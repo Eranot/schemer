@@ -1,0 +1,108 @@
+[gd_scene load_steps=15 format=3 uid="uid://6llmmbsujwg"]
+
+[ext_resource type="Script" path="res://scene/screen/main/main.gd" id="1_bocqc"]
+[ext_resource type="PackedScene" uid="uid://c4lmpmv2sqr86" path="res://scene/object/table/table.tscn" id="1_ergjh"]
+[ext_resource type="Script" path="res://resource/table/table_attribute.gd" id="3_43jyx"]
+[ext_resource type="Script" path="res://scene/screen/main/main_camera.gd" id="3_twmpa"]
+[ext_resource type="Script" path="res://resource/table/table.gd" id="4_71n8y"]
+[ext_resource type="PackedScene" uid="uid://bdibihsk5j85s" path="res://scene/gui/table_options_gui/table_options_gui.tscn" id="4_jeead"]
+
+[sub_resource type="Resource" id="Resource_vxggb"]
+script = ExtResource("3_43jyx")
+name = "id"
+type = 0
+is_primary_key = true
+is_not_null = true
+is_unique = false
+is_auto_increment = true
+
+[sub_resource type="Resource" id="Resource_gswf8"]
+script = ExtResource("3_43jyx")
+name = "name"
+type = 1
+is_primary_key = false
+is_not_null = true
+is_unique = false
+is_auto_increment = false
+
+[sub_resource type="Resource" id="Resource_dgi67"]
+script = ExtResource("3_43jyx")
+name = "birth_date"
+type = 2
+is_primary_key = false
+is_not_null = true
+is_unique = false
+is_auto_increment = false
+
+[sub_resource type="Resource" id="Resource_3wqt1"]
+script = ExtResource("4_71n8y")
+name = "person"
+columns = Array[ExtResource("3_43jyx")]([SubResource("Resource_vxggb"), SubResource("Resource_gswf8"), SubResource("Resource_dgi67")])
+foreign_keys = Array[Resource("res://resource/table/foreign_key.gd")]([])
+
+[sub_resource type="Resource" id="Resource_3xjax"]
+script = ExtResource("3_43jyx")
+name = "id"
+type = 0
+is_primary_key = true
+is_not_null = true
+is_unique = false
+is_auto_increment = true
+
+[sub_resource type="Resource" id="Resource_jiv4e"]
+script = ExtResource("3_43jyx")
+name = "name"
+type = 1
+is_primary_key = false
+is_not_null = true
+is_unique = false
+is_auto_increment = false
+
+[sub_resource type="Resource" id="Resource_t737w"]
+script = ExtResource("3_43jyx")
+name = "person_id"
+type = 0
+is_primary_key = false
+is_not_null = true
+is_unique = false
+is_auto_increment = false
+
+[sub_resource type="Resource" id="Resource_ewp1o"]
+script = ExtResource("4_71n8y")
+name = "dog"
+columns = Array[ExtResource("3_43jyx")]([SubResource("Resource_3xjax"), SubResource("Resource_jiv4e"), SubResource("Resource_t737w")])
+foreign_keys = Array[Resource("res://resource/table/foreign_key.gd")]([])
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bocqc")
+
+[node name="Table" parent="." instance=ExtResource("1_ergjh")]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 107.0
+offset_right = 398.0
+offset_bottom = 307.0
+table = SubResource("Resource_3wqt1")
+
+[node name="Table2" parent="." instance=ExtResource("1_ergjh")]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 378.0
+offset_right = 635.0
+offset_bottom = 578.0
+table = SubResource("Resource_ewp1o")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("3_twmpa")
+
+[node name="Gui" type="CanvasLayer" parent="."]
+
+[node name="TableOptionsGui" parent="Gui" instance=ExtResource("4_jeead")]
+offset_left = -450.0

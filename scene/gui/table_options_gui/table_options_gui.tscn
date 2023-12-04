@@ -1,0 +1,146 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdibihsk5j85s"]
+
+[ext_resource type="Script" path="res://scene/gui/table_options_gui/table_options_gui.gd" id="1_2wexh"]
+[ext_resource type="Script" path="res://addons/eranot.resizable/resizable.gd" id="1_4lnjg"]
+
+[node name="TableOptionsGui" type="PanelContainer"]
+custom_minimum_size = Vector2(450, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_2wexh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TableNameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "table_name"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxTitle" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ColumnsTitleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxTitle"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Columns"
+
+[node name="AddColumnButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxTitle"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+ Col"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 11
+
+[node name="NameColumn" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/NameColumn"]
+layout_mode = 2
+text = "Name"
+
+[node name="NameLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/NameColumn"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="TypeColumn" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TypeLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/TypeColumn"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Type"
+
+[node name="TypeOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/HBoxContainer/TypeColumn"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="PKColumn" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PKLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/PKColumn"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PK"
+
+[node name="PKCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/HBoxContainer/PKColumn"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="NNColumn" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="NNLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/NNColumn"]
+layout_mode = 2
+text = "NN"
+
+[node name="NNCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/HBoxContainer/NNColumn"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="UQColumn" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="UQLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/UQColumn"]
+layout_mode = 2
+text = "UQ"
+
+[node name="UQCheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/HBoxContainer/UQColumn"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="AIColumn" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AILabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/AIColumn"]
+layout_mode = 2
+text = "AI"
+
+[node name="AICheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/HBoxContainer/AIColumn"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="OptionsColumn" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="OptionsLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/OptionsColumn"]
+layout_mode = 2
+
+[node name="OptionsMenuButton" type="MenuButton" parent="MarginContainer/VBoxContainer/HBoxContainer/OptionsColumn"]
+layout_mode = 2
+text = "."
+item_count = 1
+popup/item_0/text = "Remove"
+popup/item_0/id = 0
+
+[node name="Resizable" type="Control" parent="."]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("1_4lnjg")
+max_size = Vector2(700, 0)
+active_handles = 4

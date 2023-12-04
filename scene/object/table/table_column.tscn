@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://o3cylfxw0xcj"]
+
+[ext_resource type="Script" path="res://scene/object/table/table_column.gd" id="1_u8u1r"]
+
+[node name="TableColumn" type="PanelContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_u8u1r")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="NameLabel" type="RichTextLabel" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "name: type"
+fit_content = true
