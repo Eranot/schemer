@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Table" load_steps=6 format=3 uid="uid://d4atriyil1ndw"]
+
+[ext_resource type="Script" path="res://resource/table/table_attribute.gd" id="1_odbfc"]
+[ext_resource type="Script" path="res://resource/table/table.gd" id="2_a15jd"]
+
+[sub_resource type="Resource" id="Resource_vxggb"]
+script = ExtResource("1_odbfc")
+id = 10
+name = "id"
+type = 0
+is_primary_key = true
+is_not_null = true
+is_unique = false
+is_auto_increment = true
+
+[sub_resource type="Resource" id="Resource_gswf8"]
+script = ExtResource("1_odbfc")
+id = 20
+name = "name"
+type = 1
+is_primary_key = false
+is_not_null = true
+is_unique = false
+is_auto_increment = false
+
+[sub_resource type="Resource" id="Resource_dgi67"]
+script = ExtResource("1_odbfc")
+id = 30
+name = "birth_date"
+type = 2
+is_primary_key = false
+is_not_null = true
+is_unique = false
+is_auto_increment = false
+
+[resource]
+script = ExtResource("2_a15jd")
+id = 1
+name = "person"
+columns = Array[ExtResource("1_odbfc")]([SubResource("Resource_vxggb"), SubResource("Resource_gswf8"), SubResource("Resource_dgi67")])
+constraints = Array[Resource("res://resource/table/table_constraint.gd")]([])
+position = Vector2(400, 400)

@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="Table" load_steps=10 format=3 uid="uid://g8rcsbha8gln"]
+
+[ext_resource type="Script" path="res://resource/table/table_attribute.gd" id="1_rarb4"]
+[ext_resource type="Script" path="res://resource/table/foreign_key_table_constraint_relationship.gd" id="2_s7yjr"]
+[ext_resource type="Script" path="res://resource/table/foreign_key_table_constraint.gd" id="3_ldtlh"]
+[ext_resource type="Script" path="res://resource/table/table.gd" id="4_w5f0e"]
+
+[sub_resource type="Resource" id="Resource_3xjax"]
+script = ExtResource("1_rarb4")
+id = 40
+name = "id"
+type = 0
+is_primary_key = true
+is_not_null = true
+is_unique = false
+is_auto_increment = true
+
+[sub_resource type="Resource" id="Resource_jiv4e"]
+script = ExtResource("1_rarb4")
+id = 50
+name = "name"
+type = 1
+is_primary_key = false
+is_not_null = true
+is_unique = false
+is_auto_increment = false
+
+[sub_resource type="Resource" id="Resource_t737w"]
+script = ExtResource("1_rarb4")
+id = 60
+name = "person_id"
+type = 0
+is_primary_key = false
+is_not_null = true
+is_unique = false
+is_auto_increment = false
+
+[sub_resource type="Resource" id="Resource_sbicv"]
+script = ExtResource("2_s7yjr")
+own_column_id = 60
+target_column_id = 10
+
+[sub_resource type="Resource" id="Resource_uqv0e"]
+script = ExtResource("3_ldtlh")
+target_table_id = 1
+relationships = Array[ExtResource("2_s7yjr")]([SubResource("Resource_sbicv")])
+id = 0
+
+[resource]
+script = ExtResource("4_w5f0e")
+id = 2
+name = "dog"
+columns = Array[ExtResource("1_rarb4")]([SubResource("Resource_3xjax"), SubResource("Resource_jiv4e"), SubResource("Resource_t737w")])
+constraints = Array[Resource("res://resource/table/table_constraint.gd")]([SubResource("Resource_uqv0e")])
+position = Vector2(100, 100)

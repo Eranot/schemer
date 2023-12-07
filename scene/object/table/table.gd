@@ -10,6 +10,9 @@ const table_column_scene = preload("res://scene/object/table/table_column.tscn")
 
 
 func _ready():
+	if not table:
+		table = Table.new()
+	
 	table_name.text = table.name
 	populate_attributes()
 	draggable.gui_input.connect(on_gui_input)
@@ -37,3 +40,4 @@ func populate_attributes():
 
 func on_table_updated():
 	table_name.text = table.name
+	populate_attributes()

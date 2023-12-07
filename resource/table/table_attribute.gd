@@ -9,12 +9,18 @@ enum ColumnType {
 	DATE = 2,
 }
 
+@export var id: int
 @export var name: String
 @export var type: ColumnType
 @export var is_primary_key: bool
 @export var is_not_null: bool
 @export var is_unique: bool
 @export var is_auto_increment: bool
+
+
+func _init():
+	id = randi()
+
 
 func get_label():
 	return name + ": " + get_column_type_name(type)

@@ -9,7 +9,7 @@ var position_before_drag
 var position_before_drag2
 
 
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("zoom_in"):
 		set_zoom_level(zoom_level + zoom_factor)
 	if event.is_action_pressed("zoom_out"):

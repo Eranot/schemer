@@ -1,5 +1,7 @@
 extends PanelContainer
 
+const foreign_key_gui_scene = preload("res://scene/gui/table_options_gui/foreign_key_gui.tscn")
+
 @export var table: Table
 
 @onready var name_column = %NameColumn
@@ -9,35 +11,46 @@ extends PanelContainer
 @onready var uq_column = %UQColumn
 @onready var ai_column = %AIColumn
 @onready var options_column = %OptionsColumn
-@onready var table_name_edit = %TableNameEdit
+@onready var table_name_edit: LineEdit = %TableNameEdit
 @onready var add_column_button = %AddColumnButton
+@onready var add_foreign_key_button = %AddForeignKeyButton
+@onready var foreign_keys_list = %ForeignKeysList
+
 
 const FIELD_MINIMUM_HEIGHT = 50
 
 
 func _ready():
+	hide()
 	GlobalEvents.select_table.connect(on_select_table)
 	GlobalEvents.unselect_table.connect(on_unselect_table)
 	add_column_button.pressed.connect(on_add_column)
+	add_foreign_key_button.pressed.connect(on_add_foreign_key)
 
 
 func on_select_table(_table: Table):
 	self.show()
 	self.table = _table
-	on_table_updated()
 	update_columns()
+	update_foreign_keys()
 	
 	table_name_edit.text_changed.connect(func(text):
 		table.name = text
 		table.emit_updated()
 	)
 	
+	if table.updated.is_connected(on_table_updated):
+		table.updated.disconnect(on_table_updated)
+	
 	table.updated.connect(on_table_updated)
+	on_table_updated()
 
 
 func on_table_updated():
-	table_name_edit.text = table.name
+	if not table_name_edit.has_focus():
+		table_name_edit.text = table.name
 	update_columns()
+	update_foreign_keys()
 
 
 func on_unselect_table():
@@ -74,10 +87,10 @@ func update_columns():
 			a.queue_free()
 	
 	for col: TableColumn in table.columns:
-		add_column(col)
+		add_column_gui(col)
 
 
-func add_column(col: TableColumn):
+func add_column_gui(col: TableColumn):
 	var name_line_edit = LineEdit.new()
 	name_line_edit.text = col.name
 	name_line_edit.custom_minimum_size = Vector2(0, FIELD_MINIMUM_HEIGHT)
@@ -145,8 +158,27 @@ func add_column(col: TableColumn):
 		if id == 0:
 			self.table.remove_column(col)
 	)
+
+
+func update_foreign_keys():
+	for a in foreign_keys_list.get_children():
+		a.queue_free()
 	
+	for constraint in table.constraints:
+		if not constraint is ForeignKeyTableConstraint:
+			continue
+		add_foreign_key_gui(constraint)
+		
+
+func add_foreign_key_gui(constraint: ForeignKeyTableConstraint):
+	var foreign_key_gui = foreign_key_gui_scene.instantiate()
+	foreign_key_gui.own_table = table
+	foreign_key_gui.foreign_key = constraint
+	foreign_keys_list.add_child(foreign_key_gui)
 
 
 func on_add_column():
 	table.add_new_column()
+
+func on_add_foreign_key():
+	table.add_new_foreign_key()

@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxm0iosc3iul8"]
+
+[ext_resource type="Script" path="res://scene/gui/table_options_gui/foreign_key_gui.gd" id="1_kys82"]
+
+[node name="ForeignKeyGui" type="PanelContainer"]
+offset_right = 359.0
+offset_bottom = 99.0
+script = ExtResource("1_kys82")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TableVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TableLabel" type="Label" parent="MarginContainer/VBoxContainer/TableVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Target table"
+
+[node name="TargetTableOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/TableVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="RelationshipsVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxTitleRelationships" type="HBoxContainer" parent="MarginContainer/VBoxContainer/RelationshipsVBox"]
+layout_mode = 2
+
+[node name="RelationshipsLabel" type="Label" parent="MarginContainer/VBoxContainer/RelationshipsVBox/HBoxTitleRelationships"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+text = "Relationships"
+
+[node name="AddRelationshipButton" type="Button" parent="MarginContainer/VBoxContainer/RelationshipsVBox/HBoxTitleRelationships"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "+ Rel"
+
+[node name="HBoxRelationshipsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/RelationshipsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 11
+
+[node name="OwnColumn" type="VBoxContainer" parent="MarginContainer/VBoxContainer/RelationshipsVBox/HBoxRelationshipsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OwnColumnLabel" type="Label" parent="MarginContainer/VBoxContainer/RelationshipsVBox/HBoxRelationshipsContainer/OwnColumn"]
+layout_mode = 2
+text = "Own column"
+
+[node name="OwnColumnOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/RelationshipsVBox/HBoxRelationshipsContainer/OwnColumn"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="TargetColumn" type="VBoxContainer" parent="MarginContainer/VBoxContainer/RelationshipsVBox/HBoxRelationshipsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TargetLabel" type="Label" parent="MarginContainer/VBoxContainer/RelationshipsVBox/HBoxRelationshipsContainer/TargetColumn"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Target column"
+
+[node name="TargetColumnOptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/RelationshipsVBox/HBoxRelationshipsContainer/TargetColumn"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2

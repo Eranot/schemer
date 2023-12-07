@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5vkc76lrgx84"]
+
+[ext_resource type="Script" path="res://scene/component/default_config_component/default_config_component.gd" id="1_tdyqu"]
+
+[node name="DefaultConfigComponent" type="Node"]
+script = ExtResource("1_tdyqu")
