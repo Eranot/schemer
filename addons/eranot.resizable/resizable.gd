@@ -64,7 +64,7 @@ func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
 		_on_mouse_move(event)
 			
-	elif event is InputEventMouseButton:
+	elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		_on_mouse_click(event)
 
 

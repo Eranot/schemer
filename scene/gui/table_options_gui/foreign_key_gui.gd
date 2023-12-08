@@ -73,6 +73,7 @@ func add_relationship(relationship: ForeignKeyTableConstraintRelationship):
 	
 	own_column_option_button.item_selected.connect(func(index):
 		relationship.own_column_id = own_column_option_button.get_item_id(index)
+		GlobalEvents.emit_table_gui_changed()
 	)
 	
 	if not selected_target_table:
@@ -91,5 +92,6 @@ func add_relationship(relationship: ForeignKeyTableConstraintRelationship):
 	
 	target_column_option_button.item_selected.connect(func(index):
 		relationship.target_column_id = target_column_option_button.get_item_id(index)
+		GlobalEvents.emit_table_gui_changed()
 	)
 	

@@ -1,5 +1,7 @@
 extends Control
 
+signal dragged
+
 ## Whether the dragging behaviour is active or not
 @export var active: bool = true
 
@@ -25,10 +27,10 @@ func _on_gui_input(event):
 		else:
 			drag_position = null
 		return
-	elif event is InputEventMouseMotion and drag_position:
+	elif event is InputEventMouseMotion:
 		var mouse_position = get_global_mouse_position()
 		self.mouse_default_cursor_shape = CursorShape.CURSOR_DRAG
-		parent.global_position = mouse_position - drag_position
+		if drag_position:
+			parent.global_position = mouse_position - drag_position
+			dragged.emit()
 		return
-	
-	get_viewport().push_input(event)
