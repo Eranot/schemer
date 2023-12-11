@@ -19,7 +19,7 @@ enum ColumnType {
 
 
 func _init():
-	id = randi()
+	id = randi() / 2
 
 
 func get_label():
