@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c5vkc76lrgx84" path="res://scene/component/default_config_component/default_config_component.tscn" id="2_ev8nf"]
 [ext_resource type="Script" path="res://scene/screen/main/main_camera.gd" id="3_twmpa"]
 [ext_resource type="PackedScene" uid="uid://bdibihsk5j85s" path="res://scene/gui/table_options_gui/table_options_gui.tscn" id="4_jeead"]
-[ext_resource type="PackedScene" uid="uid://c2f0huknfnwya" path="res://scene/gui/tool_bar_gui.tscn" id="7_53qxf"]
+[ext_resource type="PackedScene" uid="uid://c2f0huknfnwya" path="res://scene/gui/tool_bar_gui/tool_bar_gui.tscn" id="7_53qxf"]
 
 [node name="Main" type="Control"]
 layout_mode = 3

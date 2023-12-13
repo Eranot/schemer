@@ -22,11 +22,8 @@ func _init():
 	id = randi() / 2
 
 
-func get_label():
-	return name + ": " + get_column_type_name(type)
 
-
-func get_column_type_name(_type: ColumnType) -> String:
+static func get_column_type_name(_type: ColumnType) -> String:
 	match(_type):
 		ColumnType.INTEGER:
 			return "int"

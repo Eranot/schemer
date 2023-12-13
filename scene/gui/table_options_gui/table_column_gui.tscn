@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://rrpfxf2dwgof"]
+
+[ext_resource type="Script" path="res://scene/gui/table_options_gui/table_column_gui.gd" id="1_2iqu8"]
+[ext_resource type="Theme" uid="uid://gq4jrtos1c4q" path="res://resource/theme/default_options_theme.tres" id="1_ffq8h"]
+
+[node name="TableColumnGui" type="HBoxContainer"]
+offset_right = 302.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+theme = ExtResource("1_ffq8h")
+theme_override_constants/separation = 6
+script = ExtResource("1_2iqu8")
+
+[node name="NameLineEdit" type="LineEdit" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TypeOptionButton" type="OptionButton" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text_overrun_behavior = 4
+clip_text = true
+fit_to_longest_item = false
+
+[node name="PKCheckBox" type="CheckBox" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+
+[node name="NNCheckBox" type="CheckBox" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+
+[node name="UQCheckBox" type="CheckBox" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+
+[node name="AICheckBox" type="CheckBox" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+
+[node name="OptionsMenuButton" type="MenuButton" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+size_flags_vertical = 4
+text = "."
+item_count = 1
+popup/item_0/text = "Remove"
+popup/item_0/id = 0

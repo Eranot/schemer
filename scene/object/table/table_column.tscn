@@ -1,20 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://o3cylfxw0xcj"]
+[gd_scene load_steps=4 format=3 uid="uid://o3cylfxw0xcj"]
 
+[ext_resource type="Theme" uid="uid://b56fyl0iqk8yr" path="res://resource/theme/default_table_theme.tres" id="1_tlc4u"]
 [ext_resource type="Script" path="res://scene/object/table/table_column.gd" id="1_u8u1r"]
+[ext_resource type="Texture2D" uid="uid://bq2g4vavevq4h" path="res://asset/image/column_diamond_full.png" id="2_c7ond"]
 
 [node name="TableColumn" type="PanelContainer"]
+offset_right = 174.0
+offset_bottom = 39.0
 size_flags_horizontal = 3
+theme = ExtResource("1_tlc4u")
+theme_type_variation = &"TableColumnPanel"
 script = ExtResource("1_u8u1r")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_type_variation = &"TableColumnMargin"
 
-[node name="NameLabel" type="RichTextLabel" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ColumnIcon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+theme_type_variation = &"TableColumnIcon"
+texture = ExtResource("2_c7ond")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginSpacer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "name: type"
-fit_content = true
+size_flags_horizontal = 3
+theme_type_variation = &"TableColumnNameLabel"
+text = "id"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MarginSpacer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="ColumnTypeLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TableColumnTypeLabel"
+text = "int"

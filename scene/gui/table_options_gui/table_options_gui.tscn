@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdibihsk5j85s"]
+[gd_scene load_steps=4 format=3 uid="uid://bdibihsk5j85s"]
 
 [ext_resource type="Script" path="res://scene/gui/table_options_gui/table_options_gui.gd" id="1_2wexh"]
 [ext_resource type="Script" path="res://addons/eranot.resizable/resizable.gd" id="1_4lnjg"]
+[ext_resource type="Theme" uid="uid://gq4jrtos1c4q" path="res://resource/theme/default_options_theme.tres" id="1_bu0u7"]
 
 [node name="TableOptionsGui" type="PanelContainer"]
-custom_minimum_size = Vector2(450, 0)
+custom_minimum_size = Vector2(470, 0)
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -12,12 +13,17 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_force_pass_scroll_events = false
+theme = ExtResource("1_bu0u7")
+theme_type_variation = &"TableOptionsPanel"
 script = ExtResource("1_2wexh")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+[node name="GeneralScrollContainer" type="ScrollContainer" parent="TabContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/GeneralScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -26,141 +32,125 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/GeneralScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TableNameEdit" type="LineEdit" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="TableNameLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"InputLabel"
+text = "Name"
+
+[node name="TableNameEdit" type="LineEdit" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "table_name"
 
-[node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxTitleColumns" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxTitleColumns" type="HBoxContainer" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ColumnsTitleLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxTitleColumns"]
+[node name="ColumnsTitleLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxTitleColumns"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Columns"
 
-[node name="AddColumnButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxTitleColumns"]
+[node name="AddColumnButton" type="Button" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxTitleColumns"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "+ Col"
 
-[node name="HBoxColumnsContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxColumnsLabel" type="HBoxContainer" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 11
+theme_override_constants/separation = 6
 
-[node name="NameColumn" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer"]
-unique_name_in_owner = true
+[node name="NameLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="NameLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/NameColumn"]
-layout_mode = 2
+theme_type_variation = &"InputLabel"
 text = "Name"
+clip_text = true
+text_overrun_behavior = 1
 
-[node name="NameLineEdit" type="LineEdit" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/NameColumn"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="TypeColumn" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer"]
-unique_name_in_owner = true
+[node name="TypeLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="TypeLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/TypeColumn"]
-layout_mode = 2
-size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_type_variation = &"InputLabel"
 text = "Type"
+clip_text = true
+text_overrun_behavior = 1
 
-[node name="TypeOptionButton" type="OptionButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/TypeColumn"]
-custom_minimum_size = Vector2(0, 40)
+[node name="PKLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
-
-[node name="PKColumn" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="PKLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/PKColumn"]
-layout_mode = 2
-size_flags_horizontal = 3
+theme_type_variation = &"InputLabel"
 text = "PK"
+clip_text = true
+text_overrun_behavior = 1
 
-[node name="PKCheckBox" type="CheckBox" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/PKColumn"]
-custom_minimum_size = Vector2(0, 40)
+[node name="NNLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
-
-[node name="NNColumn" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="NNLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/NNColumn"]
-layout_mode = 2
+theme_type_variation = &"InputLabel"
 text = "NN"
+clip_text = true
+text_overrun_behavior = 1
 
-[node name="NNCheckBox" type="CheckBox" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/NNColumn"]
-custom_minimum_size = Vector2(0, 40)
+[node name="UQLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
-
-[node name="UQColumn" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="UQLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/UQColumn"]
-layout_mode = 2
+theme_type_variation = &"InputLabel"
 text = "UQ"
+clip_text = true
+text_overrun_behavior = 1
 
-[node name="UQCheckBox" type="CheckBox" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/UQColumn"]
-custom_minimum_size = Vector2(0, 40)
+[node name="AILabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
-
-[node name="AIColumn" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="AILabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/AIColumn"]
-layout_mode = 2
+theme_type_variation = &"InputLabel"
 text = "AI"
+clip_text = true
+text_overrun_behavior = 1
 
-[node name="AICheckBox" type="CheckBox" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/AIColumn"]
-custom_minimum_size = Vector2(0, 40)
+[node name="OpLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
+theme_type_variation = &"InputLabel"
+clip_text = true
+text_overrun_behavior = 1
 
-[node name="OptionsColumn" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer"]
+[node name="ColumnsList" type="VBoxContainer" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 6
 
-[node name="OptionsLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/OptionsColumn"]
+[node name="HBoxTitleForeignKeys" type="HBoxContainer" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="OptionsMenuButton" type="MenuButton" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsContainer/OptionsColumn"]
-layout_mode = 2
-text = "."
-item_count = 1
-popup/item_0/text = "Remove"
-popup/item_0/id = 0
-
-[node name="HBoxTitleForeignKeys" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="ForeignKeyTitleLabel" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxTitleForeignKeys"]
+[node name="ForeignKeyTitleLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxTitleForeignKeys"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Foreign keys"
 
-[node name="AddForeignKeyButton" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxTitleForeignKeys"]
+[node name="AddForeignKeyButton" type="Button" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxTitleForeignKeys"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "+ FK"
 
-[node name="ForeignKeysList" type="VBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="ForeignKeysList" type="VBoxContainer" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ForeignKeysScrollContainer" type="ScrollContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/ForeignKeysScrollContainer"]
 layout_mode = 2
 
 [node name="Resizable" type="Control" parent="."]

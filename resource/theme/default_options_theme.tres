@@ -1,0 +1,123 @@
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://gq4jrtos1c4q"]
+
+[ext_resource type="FontFile" uid="uid://b4gvgpxtfkka5" path="res://resource/font/Roboto-Regular.ttf" id="1_2n3il"]
+[ext_resource type="Texture2D" uid="uid://bk4ytmedv0fpp" path="res://asset/image/checkbox_check.png" id="1_d85kw"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_v2vv7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qp1v"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.282353, 0.337255, 0.419608, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bysc0"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.282353, 0.337255, 0.419608, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xq8ea"]
+bg_color = Color(0.180392, 0.223529, 0.286275, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3gc1"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.180392, 0.223529, 0.286275, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24slc"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.180392, 0.223529, 0.286275, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qcwc6"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.282353, 0.337255, 0.419608, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_551wp"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.282353, 0.337255, 0.419608, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ur8m4"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.180392, 0.223529, 0.286275, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cx7yf"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.180392, 0.223529, 0.286275, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ofoa"]
+bg_color = Color(0.101961, 0.12549, 0.164706, 1)
+
+[resource]
+CheckBox/icons/checked = ExtResource("1_d85kw")
+CheckBox/icons/unchecked = SubResource("ImageTexture_v2vv7")
+CheckBox/styles/focus = SubResource("StyleBoxFlat_1qp1v")
+CheckBox/styles/hover = SubResource("StyleBoxFlat_bysc0")
+CheckBox/styles/normal = SubResource("StyleBoxFlat_xq8ea")
+CheckBox/styles/pressed = SubResource("StyleBoxFlat_x3gc1")
+InputLabel/base_type = &"Label"
+InputLabel/colors/font_color = Color(0.643137, 0.701961, 0.760784, 1)
+Label/fonts/font = ExtResource("1_2n3il")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_24slc")
+OptionButton/constants/arrow_margin = 10
+OptionButton/styles/focus = SubResource("StyleBoxFlat_qcwc6")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_551wp")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_ur8m4")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_cx7yf")
+TableOptionsPanel/base_type = &"PanelContainer"
+TableOptionsPanel/styles/panel = SubResource("StyleBoxFlat_8ofoa")
