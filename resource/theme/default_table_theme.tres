@@ -1,11 +1,28 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://b56fyl0iqk8yr"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://b56fyl0iqk8yr"]
 
 [ext_resource type="FontFile" uid="uid://b4gvgpxtfkka5" path="res://resource/font/Roboto-Regular.ttf" id="1_3plyh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lyuoh"]
+bg_color = Color(0, 0, 0, 0)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.32549, 0.439216, 0.635294, 0.537255)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm2sc"]
 bg_color = Color(0.933333, 0.933333, 0.933333, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fp54s"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knp1c"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhng"]
 bg_color = Color(0.32549, 0.439216, 0.635294, 1)
@@ -14,6 +31,8 @@ corner_radius_top_right = 3
 
 [resource]
 Label/fonts/font = ExtResource("1_3plyh")
+SelectedTableContainer/base_type = &"PanelContainer"
+SelectedTableContainer/styles/panel = SubResource("StyleBoxFlat_lyuoh")
 TableColumnMargin/base_type = &"MarginContainer"
 TableColumnMargin/constants/margin_bottom = 6
 TableColumnMargin/constants/margin_left = 10
@@ -28,7 +47,7 @@ TableColumnTypeLabel/base_type = &"Label"
 TableColumnTypeLabel/colors/font_color = Color(0.462745, 0.462745, 0.462745, 1)
 TableColumnTypeLabel/font_sizes/font_size = 22
 TableContainer/base_type = &"PanelContainer"
-TableContainer/styles/panel = SubResource("StyleBoxEmpty_fp54s")
+TableContainer/styles/panel = SubResource("StyleBoxFlat_knp1c")
 TableNameLabel/base_type = &"Label"
 TableNameLabel/font_sizes/font_size = 22
 TableNameMarginContainer/base_type = &"MarginContainer"

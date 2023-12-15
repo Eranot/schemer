@@ -27,6 +27,14 @@ func _ready():
 	GlobalEvents.table_gui_changed.connect(func():
 		foreign_key_line_drawer.draw_foreign_key_lines(table.constraints)
 	)
+	
+	GlobalEvents.select_table.connect(func(table):
+		self.theme_type_variation = "TableContainer" if table != self.table else "SelectedTableContainer"
+	)
+	
+	GlobalEvents.unselect_table.connect(func():
+		self.theme_type_variation = "TableContainer"
+	)
 
 
 func on_gui_input(event):

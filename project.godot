@@ -21,9 +21,17 @@ GlobalEvents="*res://scene/global/global_events/global_events.gd"
 Enums="*res://scene/global/enums/enums.gd"
 ProjectController="*res://scene/global/project_controller/project_controller.tscn"
 
+[display]
+
+window/size/mode=2
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/eranot.resizable/plugin.cfg")
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 
