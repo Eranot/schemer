@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=23 format=3 uid="uid://gq4jrtos1c4q"]
+[gd_resource type="Theme" load_steps=25 format=3 uid="uid://gq4jrtos1c4q"]
 
 [ext_resource type="FontFile" uid="uid://b4gvgpxtfkka5" path="res://resource/font/Roboto-Regular.ttf" id="1_2n3il"]
 [ext_resource type="Texture2D" uid="uid://bk4ytmedv0fpp" path="res://asset/image/checkbox_check.png" id="1_d85kw"]
@@ -79,6 +79,33 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ik4q"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.25098, 0.313726, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4jud"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.25098, 0.313726, 0.4, 1)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qcwc6"]
 content_margin_left = 12.0
@@ -177,6 +204,8 @@ InputLabel/base_type = &"Label"
 InputLabel/colors/font_color = Color(0.643137, 0.701961, 0.760784, 1)
 Label/fonts/font = ExtResource("1_2n3il")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_24slc")
+MenuButton/styles/focus = SubResource("StyleBoxFlat_5ik4q")
+MenuButton/styles/pressed = SubResource("StyleBoxFlat_y4jud")
 OptionButton/constants/arrow_margin = 10
 OptionButton/styles/focus = SubResource("StyleBoxFlat_qcwc6")
 OptionButton/styles/hover = SubResource("StyleBoxFlat_551wp")
