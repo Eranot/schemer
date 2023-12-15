@@ -35,6 +35,11 @@ func on_gui_input(event):
 		and event.double_click\
 		and event.button_index == MOUSE_BUTTON_LEFT:
 			GlobalEvents.emit_select_table(table)
+	elif event is InputEventMouseButton\
+		and event.is_pressed()\
+		and not event.double_click\
+		and event.button_index == MOUSE_BUTTON_LEFT:
+			GlobalEvents.emit_click_table(table)
 
 
 func populate_attributes():

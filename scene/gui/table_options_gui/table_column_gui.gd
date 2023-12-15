@@ -1,5 +1,7 @@
 extends HBoxContainer
 
+var table: Table
+
 @onready var name_line_edit = %NameLineEdit
 @onready var type_option_button = %TypeOptionButton
 @onready var pk_checkbox = %PKCheckBox
@@ -7,6 +9,11 @@ extends HBoxContainer
 @onready var uq_checkbox = %UQCheckBox
 @onready var ai_checkbox = %AICheckBox
 @onready var options_menu_button = %OptionsMenuButton
+
+func _ready():
+	type_option_button.get_popup().transparent_bg = true
+	options_menu_button.get_popup().transparent_bg = true
+
 
 func setup_column(col: TableColumn):
 	name_line_edit.text = col.name
@@ -48,9 +55,7 @@ func setup_column(col: TableColumn):
 		col.emit_updated()
 	)
 	
-	options_menu_button.text = "."
 	var options_popup = options_menu_button.get_popup()
-	options_popup.add_item("Remove", 0)
 	options_popup.id_pressed.connect(func(id):
 		if id == 0:
 			self.table.remove_column(col)

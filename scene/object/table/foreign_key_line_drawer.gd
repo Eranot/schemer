@@ -20,10 +20,6 @@ func draw_foreign_key(foreign_key: ForeignKeyTableConstraint):
 	var initial_points: Array[Array] = []
 	
 	for relationship in foreign_key.relationships:
-		var line = Line2D.new()
-		line.width = 2
-		line.default_color = Color.hex(0x445c85)
-		line.antialiased = true
 		var own_attribute_gui = get_parent().attributes_list.get_node("column_" + str(relationship.own_column_id))
 		if not own_attribute_gui:
 			continue

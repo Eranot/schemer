@@ -3,6 +3,7 @@ extends PanelContainer
 @export var own_table: Table
 @export var foreign_key: ForeignKeyTableConstraint
 
+@onready var options_menu_button = %OptionsMenuButton
 @onready var target_table_option_button = %TargetTableOptionButton
 @onready var add_relationship_button = %AddRelationshipButton
 @onready var own_column = %OwnColumn
@@ -22,6 +23,14 @@ func _ready():
 	foreign_key.updated.connect(func():
 		update_table_options()
 		update_relationships()
+	)
+	
+	target_table_option_button.get_popup().transparent_bg = true
+	options_menu_button.get_popup().transparent_bg = true
+	
+	options_menu_button.get_popup().id_pressed.connect(func(id):
+		if id == 0:
+			self.own_table.remove_constraint(foreign_key)
 	)
 
 
@@ -62,6 +71,7 @@ func update_relationships():
 func add_relationship(relationship: ForeignKeyTableConstraintRelationship):
 	# own columns
 	var own_column_option_button = OptionButton.new()
+	own_column_option_button.get_popup().transparent_bg = true
 	
 	for col in own_table.columns:
 		own_column_option_button.add_item(col.name, col.id)
@@ -81,6 +91,7 @@ func add_relationship(relationship: ForeignKeyTableConstraintRelationship):
 	
 	# target columns
 	var target_column_option_button = OptionButton.new()
+	target_column_option_button.get_popup().transparent_bg = true
 	
 	for col in selected_target_table.columns:
 		target_column_option_button.add_item(col.name, col.id)

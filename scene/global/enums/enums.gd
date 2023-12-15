@@ -2,5 +2,7 @@ extends Node
 
 enum TOOL {
 	NONE,
-	CREATE_TABLE
+	CREATE_TABLE,
+	ONE_TO_MANY,
+	MANY_TO_MANY,
 }

@@ -5,6 +5,6 @@ class_name ForeignKeyTableConstraint
 @export var relationships: Array[ForeignKeyTableConstraintRelationship]
 
 
-func add_relationship():
-	relationships.append(ForeignKeyTableConstraintRelationship.new())
+func add_relationship(relationship: ForeignKeyTableConstraintRelationship = ForeignKeyTableConstraintRelationship.new()):
+	relationships.append(relationship)
 	emit_updated()

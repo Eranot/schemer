@@ -11,10 +11,7 @@ const foreign_key_gui_scene = preload("res://scene/gui/table_options_gui/foreign
 @onready var add_foreign_key_button = %AddForeignKeyButton
 @onready var columns_list = %ColumnsList
 @onready var foreign_keys_list = %ForeignKeysList
-
-
-
-const FIELD_MINIMUM_HEIGHT = 50
+@onready var resizable = %Resizable
 
 
 func _ready():
@@ -26,6 +23,10 @@ func _ready():
 	
 	tab_container.set_tab_title(0, "General")
 	tab_container.set_tab_title(1, "Foreign keys")
+	
+	visibility_changed.connect(func():
+		resizable.active = self.visible
+	)
 
 
 func on_select_table(_table: Table):
@@ -67,6 +68,7 @@ func update_columns():
 
 func add_column_gui(col: TableColumn):
 	var column_gui = table_column_gui_scene.instantiate()
+	column_gui.table = table
 	columns_list.add_child(column_gui)
 	column_gui.setup_column(col)
 
