@@ -20,6 +20,7 @@ config/icon="res://asset/image/icon.svg"
 GlobalEvents="*res://scene/global/global_events/global_events.gd"
 Enums="*res://scene/global/enums/enums.gd"
 ProjectController="*res://scene/global/project_controller/project_controller.tscn"
+ColumnTypesController="*res://scene/global/column_types_controller/column_types_controller.gd"
 
 [display]
 

@@ -20,7 +20,7 @@ func set_column(_column: TableColumn):
 
 func populate():
 	name_label.text = column.name
-	column_type_label.text = TableColumn.get_column_type_name(column.type)
+	column_type_label.text = column.type
 	if column.is_primary_key:
 		name_label.set("theme_override_fonts/font", primary_key_font)
 	else:

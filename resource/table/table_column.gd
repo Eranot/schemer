@@ -3,15 +3,9 @@ class_name TableColumn
 
 signal updated
 
-enum ColumnType {
-	INTEGER = 0,
-	STRING = 1,
-	DATE = 2,
-}
-
 @export var id: int
 @export var name: String
-@export var type: ColumnType
+@export var type: String
 @export var is_primary_key: bool
 @export var is_not_null: bool
 @export var is_unique: bool
@@ -20,19 +14,6 @@ enum ColumnType {
 
 func _init():
 	id = int(randi() / 2.0)
-
-
-
-static func get_column_type_name(_type: ColumnType) -> String:
-	match(_type):
-		ColumnType.INTEGER:
-			return "int"
-		ColumnType.STRING:
-			return "string"
-		ColumnType.DATE:
-			return "date"
-		_:
-			return "?"
 
 
 func emit_updated():

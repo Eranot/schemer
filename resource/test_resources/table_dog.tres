@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Table" load_steps=10 format=3 uid="uid://g8rcsbha8gln"]
 
-[ext_resource type="Script" path="res://resource/table/table_attribute.gd" id="1_rarb4"]
+[ext_resource type="Script" path="res://resource/table/table_column.gd" id="1_rarb4"]
 [ext_resource type="Script" path="res://resource/table/foreign_key_table_constraint_relationship.gd" id="2_s7yjr"]
 [ext_resource type="Script" path="res://resource/table/foreign_key_table_constraint.gd" id="3_ldtlh"]
 [ext_resource type="Script" path="res://resource/table/table.gd" id="4_w5f0e"]
@@ -9,7 +9,7 @@
 script = ExtResource("1_rarb4")
 id = 40
 name = "id"
-type = 0
+type = "int"
 is_primary_key = true
 is_not_null = true
 is_unique = false
@@ -19,7 +19,7 @@ is_auto_increment = true
 script = ExtResource("1_rarb4")
 id = 50
 name = "name"
-type = 1
+type = "varchar"
 is_primary_key = false
 is_not_null = true
 is_unique = false
@@ -29,7 +29,7 @@ is_auto_increment = false
 script = ExtResource("1_rarb4")
 id = 60
 name = "person_id"
-type = 0
+type = "int"
 is_primary_key = false
 is_not_null = true
 is_unique = false

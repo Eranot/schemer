@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Table" load_steps=6 format=3 uid="uid://d4atriyil1ndw"]
 
-[ext_resource type="Script" path="res://resource/table/table_attribute.gd" id="1_odbfc"]
+[ext_resource type="Script" path="res://resource/table/table_column.gd" id="1_odbfc"]
 [ext_resource type="Script" path="res://resource/table/table.gd" id="2_a15jd"]
 
 [sub_resource type="Resource" id="Resource_vxggb"]
 script = ExtResource("1_odbfc")
 id = 10
 name = "id"
-type = 0
+type = "int"
 is_primary_key = true
 is_not_null = true
 is_unique = false
@@ -17,7 +17,7 @@ is_auto_increment = true
 script = ExtResource("1_odbfc")
 id = 20
 name = "name"
-type = 1
+type = "varchar"
 is_primary_key = false
 is_not_null = true
 is_unique = false
@@ -27,7 +27,7 @@ is_auto_increment = false
 script = ExtResource("1_odbfc")
 id = 30
 name = "birth_date"
-type = 2
+type = "date"
 is_primary_key = false
 is_not_null = true
 is_unique = false

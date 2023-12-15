@@ -22,12 +22,12 @@ func setup_column(col: TableColumn):
 		col.emit_updated()
 	)
 	
-	type_option_button.add_item("Integer", TableColumn.ColumnType.INTEGER)
-	type_option_button.add_item("String", TableColumn.ColumnType.STRING)
-	type_option_button.add_item("Date", TableColumn.ColumnType.DATE)
-	type_option_button.selected = col.type
-	type_option_button.item_selected.connect(func(type):
-		col.type = type
+	for type in ColumnTypesController.get_column_types():
+		type_option_button.add_item(type)
+	
+	type_option_button.selected = ColumnTypesController.get_column_types().find(col.type)
+	type_option_button.item_selected.connect(func(index):
+		col.type = ColumnTypesController.get_column_types()[index]
 		col.emit_updated()
 	)
 	
