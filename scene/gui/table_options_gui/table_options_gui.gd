@@ -12,6 +12,7 @@ const foreign_key_gui_scene = preload("res://scene/gui/table_options_gui/foreign
 @onready var columns_list = %ColumnsList
 @onready var foreign_keys_list = %ForeignKeysList
 @onready var resizable = %Resizable
+@onready var options_menu_button = %OptionsMenuButton
 
 
 func _ready():
@@ -27,9 +28,20 @@ func _ready():
 	visibility_changed.connect(func():
 		resizable.active = self.visible
 	)
+	
+	options_menu_button.get_popup().transparent_bg = true
+	
+	options_menu_button.get_popup().id_pressed.connect(func(id):
+		if id == 0:
+			self.table.emit_deleted()
+	)
 
 
 func on_select_table(_table: Table):
+	if _table == null:
+		self.hide()
+		return
+	
 	self.show()
 	self.table = _table
 	update_columns()

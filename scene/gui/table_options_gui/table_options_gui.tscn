@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdibihsk5j85s"]
+[gd_scene load_steps=8 format=3 uid="uid://bdibihsk5j85s"]
 
 [ext_resource type="Script" path="res://scene/gui/table_options_gui/table_options_gui.gd" id="1_2wexh"]
 [ext_resource type="Script" path="res://addons/eranot.resizable/resizable.gd" id="1_4lnjg"]
 [ext_resource type="Theme" uid="uid://gq4jrtos1c4q" path="res://resource/theme/default_options_theme.tres" id="1_bu0u7"]
 [ext_resource type="Texture2D" uid="uid://vc6m6cu2c7k1" path="res://asset/image/plus_normal.png" id="3_cau2f"]
+[ext_resource type="Texture2D" uid="uid://c131n6ykqilil" path="res://asset/image/more_normal.png" id="3_sftt1"]
 [ext_resource type="Texture2D" uid="uid://civbhj7ryxj7i" path="res://asset/image/plus_hover.png" id="4_kglww"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4go7t"]
 
 [node name="TableOptionsGui" type="PanelContainer"]
 custom_minimum_size = Vector2(470, 0)
@@ -25,45 +28,72 @@ tab_focus_mode = 0
 
 [node name="GeneralScrollContainer" type="ScrollContainer" parent="TabContainer"]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/GeneralScrollContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/GeneralScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4go7t")
+
+[node name="OptionsMenuButton" type="MenuButton" parent="TabContainer/GeneralScrollContainer/PanelContainer"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(22, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/outline_size = 0
+icon = ExtResource("3_sftt1")
+flat = false
+text_overrun_behavior = 2
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+item_count = 1
+popup/item_0/text = "Remove"
+popup/item_0/id = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/GeneralScrollContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/GeneralScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TableNameLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
+[node name="TableNameLabel" type="Label" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"InputLabel"
 text = "Name"
 
-[node name="TableNameEdit" type="LineEdit" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
+[node name="TableNameEdit" type="LineEdit" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "table_name"
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 18
 
-[node name="HBoxTitleColumns" type="HBoxContainer" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxTitleColumns" type="HBoxContainer" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="ColumnsTitleLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxTitleColumns"]
+[node name="ColumnsTitleLabel" type="Label" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxTitleColumns"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"TitleLabel"
 text = "Columns"
 
-[node name="AddColumnButton" type="TextureButton" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxTitleColumns"]
+[node name="AddColumnButton" type="TextureButton" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxTitleColumns"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("3_cau2f")
@@ -71,11 +101,11 @@ texture_pressed = ExtResource("4_kglww")
 texture_hover = ExtResource("4_kglww")
 stretch_mode = 3
 
-[node name="HBoxColumnsLabel" type="HBoxContainer" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxColumnsLabel" type="HBoxContainer" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="NameLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+[node name="NameLabel" type="Label" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"InputLabel"
@@ -83,7 +113,7 @@ text = "Name"
 clip_text = true
 text_overrun_behavior = 1
 
-[node name="TypeLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+[node name="TypeLabel" type="Label" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -93,7 +123,7 @@ text = "Type"
 clip_text = true
 text_overrun_behavior = 1
 
-[node name="PKLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+[node name="PKLabel" type="Label" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 theme_type_variation = &"InputLabel"
@@ -101,7 +131,7 @@ text = "PK"
 clip_text = true
 text_overrun_behavior = 1
 
-[node name="NNLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+[node name="NNLabel" type="Label" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 theme_type_variation = &"InputLabel"
@@ -109,7 +139,7 @@ text = "NN"
 clip_text = true
 text_overrun_behavior = 1
 
-[node name="UQLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+[node name="UQLabel" type="Label" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 theme_type_variation = &"InputLabel"
@@ -117,7 +147,7 @@ text = "UQ"
 clip_text = true
 text_overrun_behavior = 1
 
-[node name="AILabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+[node name="AILabel" type="Label" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 theme_type_variation = &"InputLabel"
@@ -125,19 +155,19 @@ text = "AI"
 clip_text = true
 text_overrun_behavior = 1
 
-[node name="OpLabel" type="Label" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
+[node name="OpLabel" type="Label" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxColumnsLabel"]
 custom_minimum_size = Vector2(22, 0)
 layout_mode = 2
 theme_type_variation = &"InputLabel"
 clip_text = true
 text_overrun_behavior = 1
 
-[node name="ColumnsList" type="VBoxContainer" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
+[node name="ColumnsList" type="VBoxContainer" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="MarginContainer2" type="MarginContainer" parent="TabContainer/GeneralScrollContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 18
 

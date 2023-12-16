@@ -8,3 +8,7 @@ class_name ForeignKeyTableConstraint
 func add_relationship(relationship: ForeignKeyTableConstraintRelationship = ForeignKeyTableConstraintRelationship.new()):
 	relationships.append(relationship)
 	emit_updated()
+
+
+func remove_relationship(relationship: ForeignKeyTableConstraintRelationship):
+	relationships.erase(relationship)

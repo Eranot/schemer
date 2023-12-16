@@ -6,12 +6,17 @@ extends Node
 	load("res://resource/test_resources/table_dog.tres"),
 ]
 
+func add_table(table: Table):
+	tables.append(table)
+
 
 func get_all_tables() -> Array[Table]:
 	return tables
+
 
 func get_table_by_id(table_id: int) -> Table:
 	for t in tables:
 		if t.id == table_id:
 			return t
 	return null
+

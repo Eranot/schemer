@@ -21,6 +21,8 @@ func _ready():
 	draggable.gui_input.connect(on_gui_input)
 	
 	table.updated.connect(on_table_updated)
+	table.deleted.connect(on_table_deleted)
+	
 	draggable.dragged.connect(GlobalEvents.emit_table_gui_changed)
 	self.resized.connect(GlobalEvents.emit_table_gui_changed)
 	
@@ -28,8 +30,8 @@ func _ready():
 		foreign_key_line_drawer.draw_foreign_key_lines(table.constraints)
 	)
 	
-	GlobalEvents.select_table.connect(func(table):
-		self.theme_type_variation = "TableContainer" if table != self.table else "SelectedTableContainer"
+	GlobalEvents.select_table.connect(func(_table):
+		self.theme_type_variation = "TableContainer" if _table != self.table else "SelectedTableContainer"
 	)
 	
 	GlobalEvents.unselect_table.connect(func():
@@ -68,3 +70,8 @@ func populate_attributes():
 func on_table_updated():
 	table_name.text = table.name
 	populate_attributes()
+
+
+func on_table_deleted():
+	self.queue_free()
+	GlobalEvents.emit_select_table(null)

@@ -23,6 +23,7 @@ size_flags_vertical = 0
 theme_override_constants/h_separation = 0
 theme_override_constants/outline_size = 0
 icon = ExtResource("3_uvkqr")
+flat = false
 text_overrun_behavior = 2
 clip_text = true
 icon_alignment = 1
