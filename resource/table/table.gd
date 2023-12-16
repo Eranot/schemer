@@ -24,6 +24,7 @@ static func get_default_new_table() -> Table:
 	
 	var id_col = TableColumn.new()
 	id_col.name = "id"
+	id_col.type = "int"
 	id_col.is_primary_key = true
 	id_col.is_auto_increment = true
 	

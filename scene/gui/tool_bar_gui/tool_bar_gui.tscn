@@ -1,10 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2f0huknfnwya"]
+[gd_scene load_steps=12 format=3 uid="uid://c2f0huknfnwya"]
 
 [ext_resource type="Theme" uid="uid://ch5x8e1e6ymrd" path="res://resource/theme/default_tool_bar_theme.tres" id="1_i7yos"]
 [ext_resource type="Script" path="res://scene/gui/tool_bar_gui/tool_bar_gui.gd" id="1_qiabk"]
 [ext_resource type="Texture2D" uid="uid://4lkryychtap8" path="res://asset/image/create_table_icon_normal.png" id="3_inj7i"]
 [ext_resource type="Texture2D" uid="uid://rm00ny8tvrge" path="res://asset/image/one_to_many_icon_normal.png" id="4_s16df"]
 [ext_resource type="Texture2D" uid="uid://b133vyxx8763v" path="res://asset/image/many_to_many_icon_normal.png" id="5_q3lwe"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_q3omn"]
+device = -1
+keycode = 84
+unicode = 116
+
+[sub_resource type="Shortcut" id="Shortcut_jtcyf"]
+events = [SubResource("InputEventKey_q3omn")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_3kk75"]
+device = -1
+keycode = 79
+unicode = 111
+
+[sub_resource type="Shortcut" id="Shortcut_5inoc"]
+events = [SubResource("InputEventKey_3kk75")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_vkubb"]
+device = -1
+keycode = 78
+unicode = 110
+
+[sub_resource type="Shortcut" id="Shortcut_bcovx"]
+events = [SubResource("InputEventKey_vkubb")]
 
 [node name="ToolBarGui" type="PanelContainer"]
 anchors_preset = 9
@@ -28,9 +52,11 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
+tooltip_text = "New table"
 focus_mode = 0
 theme_type_variation = &"ToolButton"
 toggle_mode = true
+shortcut = SubResource("Shortcut_jtcyf")
 icon = ExtResource("3_inj7i")
 icon_alignment = 1
 
@@ -38,9 +64,11 @@ icon_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
+tooltip_text = "1:N relationship"
 focus_mode = 0
 theme_type_variation = &"ToolButton"
 toggle_mode = true
+shortcut = SubResource("Shortcut_5inoc")
 icon = ExtResource("4_s16df")
 icon_alignment = 1
 
@@ -48,8 +76,10 @@ icon_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
+tooltip_text = "N:M relationship"
 focus_mode = 0
 theme_type_variation = &"ToolButton"
 toggle_mode = true
+shortcut = SubResource("Shortcut_bcovx")
 icon = ExtResource("5_q3lwe")
 icon_alignment = 1

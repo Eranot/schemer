@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdibihsk5j85s"]
+[gd_scene load_steps=7 format=3 uid="uid://bdibihsk5j85s"]
 
 [ext_resource type="Script" path="res://scene/gui/table_options_gui/table_options_gui.gd" id="1_2wexh"]
 [ext_resource type="Script" path="res://addons/eranot.resizable/resizable.gd" id="1_4lnjg"]
 [ext_resource type="Theme" uid="uid://gq4jrtos1c4q" path="res://resource/theme/default_options_theme.tres" id="1_bu0u7"]
 [ext_resource type="Texture2D" uid="uid://vc6m6cu2c7k1" path="res://asset/image/plus_normal.png" id="3_cau2f"]
 [ext_resource type="Texture2D" uid="uid://c131n6ykqilil" path="res://asset/image/more_normal.png" id="3_sftt1"]
-[ext_resource type="Texture2D" uid="uid://civbhj7ryxj7i" path="res://asset/image/plus_hover.png" id="4_kglww"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4go7t"]
 
@@ -93,13 +92,10 @@ size_flags_horizontal = 3
 theme_type_variation = &"TitleLabel"
 text = "Columns"
 
-[node name="AddColumnButton" type="TextureButton" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxTitleColumns"]
+[node name="AddColumnButton" type="Button" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxTitleColumns"]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("3_cau2f")
-texture_pressed = ExtResource("4_kglww")
-texture_hover = ExtResource("4_kglww")
-stretch_mode = 3
+icon = ExtResource("3_cau2f")
 
 [node name="HBoxColumnsLabel" type="HBoxContainer" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -197,13 +193,10 @@ size_flags_horizontal = 3
 theme_type_variation = &"TitleLabel"
 text = "Foreign keys"
 
-[node name="AddForeignKeyButton" type="TextureButton" parent="TabContainer/ForeignKeysScrollContainer/MarginContainer/VBoxContainer/HBoxTitleForeignKeys"]
+[node name="AddForeignKeyButton" type="Button" parent="TabContainer/ForeignKeysScrollContainer/MarginContainer/VBoxContainer/HBoxTitleForeignKeys"]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("3_cau2f")
-texture_pressed = ExtResource("4_kglww")
-texture_hover = ExtResource("4_kglww")
-stretch_mode = 3
+icon = ExtResource("3_cau2f")
 
 [node name="ForeignKeysList" type="VBoxContainer" parent="TabContainer/ForeignKeysScrollContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
