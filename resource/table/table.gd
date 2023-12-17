@@ -9,6 +9,7 @@ signal deleted
 @export var columns: Array[TableColumn]
 @export var constraints: Array[TableConstraint]
 @export var position: Vector2
+@export var size: Vector2
 
 
 func _init():
@@ -95,3 +96,44 @@ func on_any_table_deleted(table_id: int):
 				self.remove_constraint(constraint)
 	
 	emit_updated()
+
+
+func get_json():
+	var json = {
+		"id": self.id,
+		"name": self.name,
+		"position": {
+			"x": self.position.x,
+			"y": self.position.y,
+		},
+		"size": {
+			"x": self.size.x,
+			"y": self.size.y,
+		},
+		"columns": [],
+		"constraints": []
+	}
+	
+	for col: TableColumn in columns:
+		json["columns"].append(col.get_json())
+	
+	for constraint: TableConstraint in constraints:
+		json["constraints"].append(constraint.get_json())
+	
+	return json
+
+
+static func from_json(json) -> Table:
+	var table = Table.new()
+	table.id = json["id"]
+	table.name = json["name"]
+	table.position = Vector2(json["position"]["x"], json["position"]["y"])
+	table.size = Vector2(json["size"]["x"], json["size"]["y"])
+	
+	for col in json["columns"]:
+		table.columns.append(TableColumn.from_json(col))
+	
+	for col in json["constraints"]:
+		table.constraints.append(TableConstraint.from_json(col))
+	
+	return table

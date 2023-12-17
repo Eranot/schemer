@@ -23,8 +23,8 @@ func _ready():
 	table.updated.connect(on_table_updated)
 	table.deleted.connect(on_table_deleted)
 	
-	draggable.dragged.connect(GlobalEvents.emit_table_gui_changed)
-	self.resized.connect(GlobalEvents.emit_table_gui_changed)
+	draggable.dragged.connect(on_table_dragged)
+	self.resized.connect(on_table_resized)
 	
 	GlobalEvents.table_gui_changed.connect(func():
 		foreign_key_line_drawer.draw_foreign_key_lines(table.constraints)
@@ -75,3 +75,13 @@ func on_table_updated():
 func on_table_deleted():
 	self.queue_free()
 	GlobalEvents.emit_select_table(null)
+
+
+func on_table_dragged():
+	table.position = self.global_position
+	GlobalEvents.emit_table_gui_changed()
+
+
+func on_table_resized():
+	table.size = self.size
+	GlobalEvents.emit_table_gui_changed()

@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://cibjypi6odsjd"]
+
+[ext_resource type="Theme" uid="uid://x4qu3biabw71" path="res://resource/theme/default_top_bar_theme.tres" id="1_3k2kx"]
+[ext_resource type="Script" path="res://scene/gui/top_bar_gui/top_bar_gui.gd" id="2_frcl7"]
+[ext_resource type="Script" path="res://scene/gui/top_bar_gui/save_file_component.gd" id="3_5yx3h"]
+[ext_resource type="Script" path="res://scene/gui/top_bar_gui/new_file_component.gd" id="3_jnh51"]
+[ext_resource type="Script" path="res://scene/gui/top_bar_gui/open_file_component.gd" id="4_t6byg"]
+
+[node name="TopBarGui" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 30)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme = ExtResource("1_3k2kx")
+theme_type_variation = &"TopBarPanel"
+script = ExtResource("2_frcl7")
+
+[node name="NewFileComponent" type="Node" parent="."]
+script = ExtResource("3_jnh51")
+
+[node name="SaveFileComponent" type="Node" parent="."]
+script = ExtResource("3_5yx3h")
+
+[node name="OpenFileComponent" type="Node" parent="."]
+script = ExtResource("4_t6byg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FileMenuButton" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "File"
+item_count = 4
+popup/item_0/text = "New file"
+popup/item_0/id = 0
+popup/item_1/text = "Open file"
+popup/item_1/id = 1
+popup/item_2/text = "Save"
+popup/item_2/id = 2
+popup/item_3/text = "Save as"
+popup/item_3/id = 3
+
+[node name="HelpMenuButton" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Help"
+item_count = 3
+popup/item_0/text = "Website"
+popup/item_0/id = 0
+popup/item_1/text = "Github"
+popup/item_1/id = 1
+popup/item_2/text = "About"
+popup/item_2/id = 2
+
+[node name="SaveFileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+access = 2
+filters = PackedStringArray("*.schemer.json")
+use_native_dialog = true
+
+[node name="OpenFileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+size = Vector2i(312, 153)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.schemer.json")
+use_native_dialog = true

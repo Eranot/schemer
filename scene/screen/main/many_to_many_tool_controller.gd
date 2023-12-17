@@ -23,6 +23,7 @@ func on_click_table(table: Table):
 func create_many_to_many_relationship(table1: Table, table2: Table):
 	var new_table = Table.new()
 	new_table.name = table1.name + "_" + table2.name
+	new_table.position = lerp(table1.position, table2.position, 0.5) + Vector2(100, 25)
 	
 	add_foreign_key_to_table(new_table, table1)
 	add_foreign_key_to_table(new_table, table2)

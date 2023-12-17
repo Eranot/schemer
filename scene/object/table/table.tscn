@@ -8,6 +8,8 @@
 
 [node name="Table" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 0)
+offset_right = 200.0
+offset_bottom = 51.0
 theme = ExtResource("1_b1m4v")
 theme_type_variation = &"TableContainer"
 script = ExtResource("1_07yrg")
