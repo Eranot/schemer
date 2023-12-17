@@ -7,7 +7,7 @@ var current_file: String:
 		get_parent().current_file = file
 
 
-func new_file(path: String = ""):
+func new_file():
 	DisplayServer.window_set_title("Schemer - new file")
 	ProjectController.emit_clean_project()
 	current_file = ""

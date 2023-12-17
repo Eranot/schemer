@@ -2,6 +2,7 @@ extends TableConstraint
 class_name ForeignKeyTableConstraint
 
 @export var target_table_id: int
+@export var center_point: Vector2
 @export var relationships: Array[ForeignKeyTableConstraintRelationship]
 
 
@@ -19,6 +20,10 @@ func get_json():
 		"id": self.id,
 		"type": 0,
 		"target_table_id": self.target_table_id,
+		"center_point": {
+			"x": center_point.x,
+			"y": center_point.x
+		},
 		"relationships": []
 	}
 	
@@ -26,3 +31,14 @@ func get_json():
 		json["relationships"].append(rel.get_json())
 	
 	return json
+
+
+static func from_json(json):
+	var constraint = ForeignKeyTableConstraint.new()
+	constraint.id = json["id"]
+	constraint.target_table_id = json["target_table_id"]
+	constraint.center_point = Vector2(json["center_point"]["x"], json["center_point"]["y"])
+	for rel in json["relationships"]:
+		constraint.relationships.append(ForeignKeyTableConstraintRelationship.from_json(rel))
+
+	return constraint

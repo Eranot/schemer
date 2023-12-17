@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckryh6bni2rol"]
+
+[ext_resource type="Script" path="res://scene/gui/foreign_key_line_gui/foreign_key_line_gui.gd" id="1_3tjee"]
+[ext_resource type="Theme" uid="uid://dip1w8ia1wvwb" path="res://resource/theme/default_relationship_lines_theme.tres" id="1_c3jti"]
+[ext_resource type="Script" path="res://scene/gui/foreign_key_line_gui/line_draggable.gd" id="2_ghfql"]
+
+[node name="ForeignKeyLineGui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_c3jti")
+script = ExtResource("1_3tjee")
+
+[node name="LinesContainer" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="CenterPoint" type="Control" parent="."]
+unique_name_in_owner = true
+z_index = 1
+anchors_preset = 0
+
+[node name="CenterPointP" type="PanelContainer" parent="CenterPoint"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -3.0
+offset_top = -8.0
+offset_right = 3.0
+offset_bottom = 8.0
+theme_type_variation = &"CenterPointPanel"
+
+[node name="LineDraggable" type="Control" parent="CenterPoint/CenterPointP" node_paths=PackedStringArray("parent")]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("2_ghfql")
+parent = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="CenterPoint/CenterPointP/LineDraggable"]
+wait_time = 0.05
+autostart = true

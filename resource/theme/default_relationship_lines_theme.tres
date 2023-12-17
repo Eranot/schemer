@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dip1w8ia1wvwb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwbra"]
+bg_color = Color(0.231373, 0.313726, 0.462745, 1)
+
+[resource]
+CenterPointPanel/base_type = &"PanelContainer"
+CenterPointPanel/styles/panel = SubResource("StyleBoxFlat_vwbra")

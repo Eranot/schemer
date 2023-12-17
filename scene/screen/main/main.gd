@@ -9,6 +9,15 @@ func _ready():
 	GlobalEvents.create_table.connect(on_create_table)
 	GlobalEvents.select_tool.connect(on_select_tool)
 	ProjectController.clean_project.connect(on_clean_project)
+	
+	var test_tables = [
+		#load("res://resource/test_resources/table_car.tres"),
+		#load("res://resource/test_resources/table_person.tres"),
+		#load("res://resource/test_resources/table_dog.tres"),
+	]
+	
+	for t in test_tables:
+		GlobalEvents.emit_create_table(t)
 
 
 func add_table_to_canvas(table: Table):

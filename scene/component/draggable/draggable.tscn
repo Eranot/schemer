@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1r1y68w2aawg"]
+
+[ext_resource type="Script" path="res://scene/component/draggable/draggable.gd" id="1_41x75"]
+
+[node name="Draggable" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_41x75")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true

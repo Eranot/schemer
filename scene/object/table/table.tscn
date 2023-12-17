@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://b56fyl0iqk8yr" path="res://resource/theme/default_table_theme.tres" id="1_b1m4v"]
 [ext_resource type="Script" path="res://scene/object/table/foreign_key_line_drawer.gd" id="2_qfogq"]
 [ext_resource type="Script" path="res://addons/eranot.resizable/resizable.gd" id="3_o2ki2"]
-[ext_resource type="Script" path="res://scene/object/table/draggable.gd" id="4_pypjm"]
+[ext_resource type="PackedScene" uid="uid://c1r1y68w2aawg" path="res://scene/component/draggable/draggable.tscn" id="4_lfg1w"]
 
 [node name="Table" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -17,6 +17,9 @@ script = ExtResource("1_07yrg")
 [node name="ForeignKeyLineDrawer" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_qfogq")
+
+[node name="RelationshipsContainer" type="Node" parent="." groups=["relationships_container"]]
+unique_name_in_owner = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -39,10 +42,9 @@ layout_mode = 2
 theme_type_variation = &"TableNameLabel"
 text = "table_name"
 
-[node name="Draggable" type="Control" parent="VBoxContainer/TableNamePanelContainer" node_paths=PackedStringArray("parent")]
+[node name="Draggable" parent="VBoxContainer/TableNamePanelContainer" node_paths=PackedStringArray("parent") instance=ExtResource("4_lfg1w")]
 unique_name_in_owner = true
 layout_mode = 2
-script = ExtResource("4_pypjm")
 parent = NodePath("../../..")
 
 [node name="AttributesList" type="VBoxContainer" parent="VBoxContainer"]

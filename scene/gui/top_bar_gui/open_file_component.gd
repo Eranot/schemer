@@ -29,6 +29,7 @@ func on_open_file_selected(path: String):
 
 func open_file_pc(path: String):
 	ProjectController.emit_clean_project()
+	await get_tree().create_timer(0.1).timeout
 	
 	var save_file = FileAccess.open(path, FileAccess.READ)
 	var json = save_file.get_as_text()
@@ -37,6 +38,7 @@ func open_file_pc(path: String):
 
 func open_file_web():
 	var json = await WebFileController.open_file()
+	await get_tree().create_timer(0.1).timeout
 	if json:
 		ProjectController.emit_clean_project()
 		ProjectController.import_from_json(json)

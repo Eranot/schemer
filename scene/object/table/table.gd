@@ -63,8 +63,6 @@ func populate_attributes():
 		col_obj.name = n
 		attributes_list.add_child(col_obj, true)
 		col_obj.set_column(col)
-	
-	foreign_key_line_drawer.draw_foreign_key_lines(table.constraints)
 
 
 func on_table_updated():

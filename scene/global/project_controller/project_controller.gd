@@ -2,11 +2,8 @@ extends Node
 
 signal clean_project
 
-@onready var tables: Array[Table] = [
-	#load("res://resource/test_resources/table_car.tres"),
-	#load("res://resource/test_resources/table_person.tres"),
-	#load("res://resource/test_resources/table_dog.tres"),
-]
+@onready var tables: Array[Table] = []
+
 
 func add_table(table: Table):
 	tables.append(table)
@@ -38,7 +35,6 @@ func get_file_json():
 ## Removes all about the current project and cleans everything
 func emit_clean_project():
 	clean_project.emit()
-
 
 
 func import_from_json(json: String):
