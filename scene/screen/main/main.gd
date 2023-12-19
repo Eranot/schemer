@@ -42,6 +42,10 @@ func _unhandled_input(_event):
 		table.position = get_global_mouse_position()
 		GlobalEvents.emit_create_table(table)
 		GlobalEvents.emit_select_tool(Enums.TOOL.NONE)
+	elif Input.is_action_just_pressed("click") and selected_tool == Enums.TOOL.NONE:
+		var focused_node = get_viewport().gui_get_focus_owner()
+		if focused_node:
+			focused_node.release_focus()
 
 
 func on_create_table(table: Table):

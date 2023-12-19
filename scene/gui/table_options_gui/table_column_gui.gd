@@ -60,3 +60,7 @@ func setup_column(col: TableColumn):
 		if id == 0:
 			self.table.remove_column(col)
 	)
+
+
+func grab_name_focus():
+	name_line_edit.grab_focus()

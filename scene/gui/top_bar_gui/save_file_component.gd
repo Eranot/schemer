@@ -30,7 +30,6 @@ func save_as():
 
 
 func on_save_file_selected(path: String):
-	DisplayServer.window_set_title("Schemer - " + current_file)
 	save_file(path)
 
 
@@ -48,7 +47,9 @@ func save_file(path: String = ""):
 func save_file_pc(path: String):
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	var json = ProjectController.get_file_json()
-	file.store_line(JSON.stringify(json))
+	file.store_line(JSON.stringify(json, "\t"))
+	
+	get_parent().update_window_title()
 
 
 func save_file_web(file_name: String):

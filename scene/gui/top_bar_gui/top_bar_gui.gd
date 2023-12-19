@@ -17,6 +17,8 @@ func _ready():
 	file_menu_button.get_popup().id_pressed.connect(on_file_menu_pressed)
 	
 	setup_shortcuts()
+	
+	update_window_title()
 
 
 func on_file_menu_pressed(id: int):
@@ -59,3 +61,10 @@ func setup_shortcuts():
 	var save_as_shortcut = Shortcut.new()
 	save_as_shortcut.events = [save_as_event]
 	file_menu_button.get_popup().set_item_shortcut(3, save_as_shortcut)
+
+
+func update_window_title():
+	if current_file:
+		DisplayServer.window_set_title("Schemer - " + current_file)
+	else:
+		DisplayServer.window_set_title("Schemer - new file")

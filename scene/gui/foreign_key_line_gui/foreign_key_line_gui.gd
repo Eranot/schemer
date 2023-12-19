@@ -24,10 +24,12 @@ func setup_line(source_table_id: int, target_table_id: int, foreign_key: Foreign
 	source_table = tables_container.get_node("table_" + str(source_table_id))
 	target_table = tables_container.get_node("table_" + str(target_table_id))
 	
+	if not source_table or not target_table:
+		return
 	
 	line_draggable.dragged.connect(func():
 		foreign_key.center_point = center_point.global_position
-		draw_lines(foreign_key)
+		draw_lines()
 	)
 	
 	source_table_columns = foreign_key.relationships.map(func(rel: ForeignKeyTableConstraintRelationship):
@@ -45,6 +47,7 @@ func setup_line(source_table_id: int, target_table_id: int, foreign_key: Foreign
 	var table_point_target = get_table_point(attribute_points_target)
 	
 	var perfect_middle = lerp(table_point_source.x, table_point_target.x, 0.5)
+	
 	## If the saved point is way to far of the perfect middle, we snap back to it
 	if not foreign_key.center_point \
 		or foreign_key.center_point == Vector2.ZERO \
@@ -54,10 +57,10 @@ func setup_line(source_table_id: int, target_table_id: int, foreign_key: Foreign
 	else:
 		center_point.global_position = foreign_key.center_point
 
-	draw_lines(foreign_key)
+	draw_lines()
 
 
-func draw_lines(foreign_key: ForeignKeyTableConstraint):
+func draw_lines():
 	for c in lines_container.get_children():
 		c.queue_free()
 	
@@ -66,6 +69,9 @@ func draw_lines(foreign_key: ForeignKeyTableConstraint):
 	
 	var attribute_points_target = get_attribute_points(target_table, source_table, target_table_columns)
 	var table_point_target = get_table_point(attribute_points_target)
+	
+	if not attribute_points_source or not attribute_points_target:
+		return
 	
 	center_point.global_position.y = lerp(table_point_source.y, table_point_target.y, 0.5)
 	

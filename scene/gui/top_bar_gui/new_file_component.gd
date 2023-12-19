@@ -8,6 +8,6 @@ var current_file: String:
 
 
 func new_file():
-	DisplayServer.window_set_title("Schemer - new file")
+	get_parent().update_window_title()
 	ProjectController.emit_clean_project()
 	current_file = ""

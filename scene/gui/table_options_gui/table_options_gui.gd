@@ -18,6 +18,7 @@ const foreign_key_gui_scene = preload("res://scene/gui/table_options_gui/foreign
 func _ready():
 	hide()
 	GlobalEvents.select_table.connect(on_select_table)
+	GlobalEvents.create_table.connect(on_create_table)
 	GlobalEvents.unselect_table.connect(on_unselect_table)
 	add_column_button.pressed.connect(on_add_column)
 	add_foreign_key_button.pressed.connect(on_add_foreign_key)
@@ -35,9 +36,13 @@ func _ready():
 		if id == 0:
 			self.table.emit_deleted()
 	)
+	
+	setup_shortcuts()
 
 
 func on_select_table(_table: Table):
+	table_name_edit.release_focus()
+	
 	if _table == null:
 		self.hide()
 		return
@@ -57,6 +62,12 @@ func on_select_table(_table: Table):
 	
 	table.updated.connect(on_table_updated)
 	on_table_updated()
+
+
+func on_create_table(_table: Table):
+	await get_tree().create_timer(0.1).timeout
+	table_name_edit.grab_focus()
+	table_name_edit.caret_column = 100
 
 
 func on_table_updated():
@@ -104,6 +115,21 @@ func add_foreign_key_gui(constraint: ForeignKeyTableConstraint):
 
 func on_add_column():
 	table.add_new_column()
+	focus_last_column()
+
 
 func on_add_foreign_key():
 	table.add_new_foreign_key()
+
+
+func focus_last_column():
+	columns_list.get_children()[-1].grab_name_focus()
+	
+
+func setup_shortcuts():
+	# Delete table
+	var delete_event = InputEventAction.new()
+	delete_event.action = "delete"
+	var delete_shortcut = Shortcut.new()
+	delete_shortcut.events = [delete_event]
+	options_menu_button.get_popup().set_item_shortcut(0, delete_shortcut)

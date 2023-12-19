@@ -9,6 +9,10 @@ func add_table(table: Table):
 	tables.append(table)
 
 
+func remove_table(table: Table):
+	tables.erase(table)
+
+
 func get_all_tables() -> Array[Table]:
 	return tables
 

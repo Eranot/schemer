@@ -10,6 +10,7 @@ func get_default_new_table(position: Vector2) -> Table:
 	var id = TableColumn.new()
 	id.name = "id"
 	id.is_primary_key = true
+	id.is_not_null = true
 	id.is_auto_increment = true
 	
 	table.columns = [

@@ -22,7 +22,7 @@ func open():
 
 func on_open_file_selected(path: String):
 	current_file = path
-	DisplayServer.window_set_title("Schemer - " + path)
+	get_parent().update_window_title()
 	open_file_pc(path)
 
 

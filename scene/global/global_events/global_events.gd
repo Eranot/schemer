@@ -38,4 +38,5 @@ func emit_table_gui_changed():
 
 
 func emit_table_deleted(table_id: int):
+	ProjectController.remove_table(ProjectController.get_table_by_id(table_id))
 	table_deleted.emit(table_id)
