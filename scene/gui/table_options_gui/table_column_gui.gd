@@ -59,7 +59,24 @@ func setup_column(col: TableColumn):
 	options_popup.id_pressed.connect(func(id):
 		if id == 0:
 			self.table.remove_column(col)
+		elif id == 1:
+			self.table.move_column_up(col)
+		elif id == 2:
+			self.table.move_column_down(col)
 	)
+	options_menu_button.shortcut_context = self
+	
+	var move_up_event = InputEventAction.new()
+	move_up_event.action = "move_up"
+	var move_up_shortcut = Shortcut.new()
+	move_up_shortcut.events = [move_up_event]
+	options_popup.set_item_shortcut(1, move_up_shortcut)
+	
+	var move_down_event = InputEventAction.new()
+	move_down_event.action = "move_down"
+	var move_down_shortcut = Shortcut.new()
+	move_down_shortcut.events = [move_down_event]
+	options_popup.set_item_shortcut(2, move_down_shortcut)
 
 
 func grab_name_focus():

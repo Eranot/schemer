@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdibihsk5j85s"]
+[gd_scene load_steps=9 format=3 uid="uid://bdibihsk5j85s"]
 
 [ext_resource type="Script" path="res://scene/gui/table_options_gui/table_options_gui.gd" id="1_2wexh"]
 [ext_resource type="Script" path="res://addons/eranot.resizable/resizable.gd" id="1_4lnjg"]
@@ -7,6 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://c131n6ykqilil" path="res://asset/image/more_normal.png" id="3_sftt1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4go7t"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_r1wsf"]
+device = -1
+shift_pressed = true
+ctrl_pressed = true
+keycode = 67
+unicode = 67
+
+[sub_resource type="Shortcut" id="Shortcut_6ygek"]
+events = [SubResource("InputEventKey_r1wsf")]
 
 [node name="TableOptionsGui" type="PanelContainer"]
 custom_minimum_size = Vector2(470, 0)
@@ -23,16 +33,17 @@ script = ExtResource("1_2wexh")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 tab_focus_mode = 0
 
 [node name="GeneralScrollContainer" type="ScrollContainer" parent="TabContainer"]
 layout_mode = 2
-mouse_filter = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="TabContainer/GeneralScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4go7t")
 
 [node name="OptionsMenuButton" type="MenuButton" parent="TabContainer/GeneralScrollContainer/PanelContainer"]
@@ -95,6 +106,7 @@ text = "Columns"
 [node name="AddColumnButton" type="Button" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxTitleColumns"]
 unique_name_in_owner = true
 layout_mode = 2
+shortcut = SubResource("Shortcut_6ygek")
 icon = ExtResource("3_cau2f")
 
 [node name="HBoxColumnsLabel" type="HBoxContainer" parent="TabContainer/GeneralScrollContainer/PanelContainer/MarginContainer/VBoxContainer"]

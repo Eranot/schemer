@@ -61,6 +61,7 @@ func on_select_table(_table: Table):
 		table.updated.disconnect(on_table_updated)
 	
 	table.updated.connect(on_table_updated)
+	table.column_order_updated.connect(on_column_order_updated)
 	on_table_updated()
 
 
@@ -133,3 +134,12 @@ func setup_shortcuts():
 	var delete_shortcut = Shortcut.new()
 	delete_shortcut.events = [delete_event]
 	options_menu_button.get_popup().set_item_shortcut(0, delete_shortcut)
+
+
+func on_column_order_updated(from_index: int, to_index: int):
+	var from = columns_list.get_children()[from_index]
+	
+	if not from:
+		return
+		
+	columns_list.move_child(from, to_index)

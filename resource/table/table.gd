@@ -3,6 +3,7 @@ class_name Table
 
 signal updated
 signal deleted
+signal column_order_updated(from_index: int, to_index: int)
 
 @export var id: int
 @export var name: String
@@ -16,6 +17,7 @@ func _init():
 	id = randi()
 	
 	GlobalEvents.table_deleted.connect(on_any_table_deleted)
+	size = Vector2(300, 0)
 
 
 static func get_default_new_table() -> Table:
@@ -45,6 +47,10 @@ func emit_deleted():
 	deleted.emit()
 
 
+func emit_column_order_updated(from_index: int, to_index: int):
+	column_order_updated.emit(from_index, to_index)
+
+
 func add_new_column(column: TableColumn = TableColumn.new()):
 	columns.append(column)
 	emit_updated()
@@ -60,6 +66,30 @@ func remove_column(col: TableColumn):
 						self.remove_constraint(constraint)
 	columns.erase(col)
 	emit_updated()
+
+
+func move_column_up(col: TableColumn):
+	var index = columns.find(col)
+	
+	if index == -1 or index == 0:
+		return
+	
+	columns.remove_at(index)
+	columns.insert(index-1, col)
+	
+	emit_column_order_updated(index, index-1)
+
+
+func move_column_down(col: TableColumn):
+	var index = columns.find(col)
+	
+	if index == -1 or index == columns.size() - 1:
+		return
+	
+	columns.remove_at(index)
+	columns.insert(index+1, col)
+	
+	emit_column_order_updated(index, index+1)
 
 
 func remove_column_by_id(col_id: int):
