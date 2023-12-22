@@ -13,7 +13,8 @@ config_version=5
 config/name="Schemer"
 run/main_scene="res://scene/screen/main/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://asset/image/icon.svg"
+boot_splash/image="res://asset/image/logo_schemer.png"
+config/icon="res://asset/image/logo_schemer.png"
 
 [autoload]
 
