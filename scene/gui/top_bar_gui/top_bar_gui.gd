@@ -15,6 +15,7 @@ func _ready():
 	help_menu_button.get_popup().transparent_bg = true
 	
 	file_menu_button.get_popup().id_pressed.connect(on_file_menu_pressed)
+	help_menu_button.get_popup().id_pressed.connect(on_help_menu_pressed)
 	
 	setup_shortcuts()
 	
@@ -26,11 +27,19 @@ func on_file_menu_pressed(id: int):
 		new_file_component.new_file()
 	elif id == 1: # Open file
 		open_file_component.open()
-		pass
 	elif id == 2: # Save
 		save_file_component.save()
 	elif id == 3: # Save as
 		save_file_component.save_as()
+
+
+func on_help_menu_pressed(id: int):
+	if id == 0: # Website
+		OS.shell_open("https://schemer.gg")
+	elif id == 1: # Github
+		OS.shell_open("https://github.com/Eranot/schemer")
+	elif id == 2: # About
+		save_file_component.save()
 
 
 func setup_shortcuts():

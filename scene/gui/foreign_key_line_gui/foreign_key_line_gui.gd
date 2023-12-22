@@ -51,7 +51,7 @@ func setup_line(source_table_id: int, target_table_id: int, foreign_key: Foreign
 	## If the saved point is way to far of the perfect middle, we snap back to it
 	if not foreign_key.center_point \
 		or foreign_key.center_point == Vector2.ZERO \
-		or abs(perfect_middle - foreign_key.center_point.x) > 100:
+		or abs(perfect_middle - foreign_key.center_point.x) > 200:
 		center_point.global_position.x = perfect_middle
 		foreign_key.center_point = Vector2.ZERO
 	else:
