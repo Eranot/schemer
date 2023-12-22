@@ -22,7 +22,7 @@ func _ready():
 	
 	table.updated.connect(on_table_updated)
 	table.deleted.connect(on_table_deleted)
-	table.column_order_updated.connect(func(a, b): self.on_table_updated())
+	table.column_order_updated.connect(func(_a, _b): self.on_table_updated())
 	
 	draggable.dragged.connect(on_table_dragged)
 	self.resized.connect(on_table_resized)

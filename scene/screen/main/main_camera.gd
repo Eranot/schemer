@@ -25,7 +25,13 @@ func _unhandled_input(event):
 
 
 func set_zoom_level(level: float):
-	var tween = get_tree().create_tween()
+	var old_zoom_level = zoom_level
+	
 	zoom_level = clampf(level, min_zoom, max_zoom)
-	tween.tween_property(self, "zoom", Vector2(zoom_level, zoom_level), zoom_duration)\
-		.set_trans(Tween.TRANS_SINE)
+	
+	var mouse_world_position = self.get_global_mouse_position()
+	var direction = (mouse_world_position - self.global_position)
+	var new_position = self.global_position + direction - ((direction) / (zoom_level/old_zoom_level))
+	
+	self.zoom = Vector2(zoom_level, zoom_level)
+	self.global_position = new_position

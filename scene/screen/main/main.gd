@@ -24,7 +24,7 @@ func add_table_to_canvas(table: Table):
 	var new_table = table_scene.instantiate()
 	new_table.table = table
 	new_table.global_position = table.position
-	new_table.size = table.size
+	new_table.size.x = table.size.x
 	tables_container.add_child(new_table)
 	new_table.table.emit_updated()
 	GlobalEvents.emit_select_table(new_table.table)
