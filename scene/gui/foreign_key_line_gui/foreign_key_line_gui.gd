@@ -40,13 +40,9 @@ func setup_line(source_table_id: int, target_table_id: int, foreign_key: Foreign
 		return rel.target_column_id
 	)
 	
-	var attribute_points_source = get_attribute_points(source_table, target_table, source_table_columns)
-	var table_point_source = get_table_point(attribute_points_source)
-	
-	var attribute_points_target = get_attribute_points(target_table, source_table, target_table_columns)
-	var table_point_target = get_table_point(attribute_points_target)
-	
-	var perfect_middle = lerp(table_point_source.x, table_point_target.x, 0.5)
+	var point_source: TablePoint = get_table_point(source_table, target_table, source_table_columns)
+	var point_target: TablePoint = get_table_point(target_table, source_table, target_table_columns)
+	var perfect_middle = lerp(point_source.end_point.x, point_target.end_point.x, 0.5)
 	
 	## If the saved point is way to far of the perfect middle, we snap back to it
 	if not foreign_key.center_point \
@@ -64,97 +60,84 @@ func draw_lines():
 	for c in lines_container.get_children():
 		c.queue_free()
 	
-	var attribute_points_source = get_attribute_points(source_table, target_table, source_table_columns)
-	var table_point_source = get_table_point(attribute_points_source)
+	var point_source: TablePoint = get_table_point(source_table, target_table, source_table_columns)
+	var point_target: TablePoint = get_table_point(target_table, source_table, target_table_columns)
 	
-	var attribute_points_target = get_attribute_points(target_table, source_table, target_table_columns)
-	var table_point_target = get_table_point(attribute_points_target)
+	center_point.global_position.y = lerp(point_source.end_point.y, point_target.end_point.y, 0.5)
 	
-	if not attribute_points_source or not attribute_points_target:
-		return
+	draw_from_center_to_column(point_source, line_1)
+	draw_from_center_to_column(point_target, line_2)
 	
-	center_point.global_position.y = lerp(table_point_source.y, table_point_target.y, 0.5)
-	
-	draw_from_center_to_column(table_point_source, attribute_points_source, line_1)
-	draw_from_center_to_column(table_point_target, attribute_points_target, line_2)
-	
-	line_draggable.min_x = min(table_point_source.x, table_point_target.x)
-	line_draggable.max_x = max(table_point_source.x, table_point_target.x)
+	if point_source.side == Enums.SIDE.LEFT:
+		line_draggable.min_x = min(point_source.end_point.x - 50, point_target.end_point.x - 50)
+		line_draggable.max_x = max(point_source.end_point.x, point_target.end_point.x)
+	elif point_source.side == Enums.SIDE.RIGHT:
+		line_draggable.min_x = min(point_source.end_point.x, point_target.end_point.x)
+		line_draggable.max_x = max(point_source.end_point.x + 50, point_target.end_point.x + 50)
 
 
-func draw_from_center_to_column(table_point, attribute_points, line: Line2D):
-	var points = []
+func draw_from_center_to_column(table_point: TablePoint, line: Line2D):
+	var points: Array[Vector2] = []
 	
 	var center: Vector2 = center_point.global_position + center_point.size/2
 	
 	points.append(center)
 	
-	if table_point.x < attribute_points[0][0].x and center.x > table_point.x:
+	if table_point.side == Enums.SIDE.LEFT and center.x > table_point.end_point.x:
 		points.append(Vector2(
-			table_point.x,
+			table_point.end_point.x,
 			center.y
 		))
 	else:
 		points.append(Vector2(
 			center.x,
-			table_point.y
+			table_point.end_point.y
 		))
 	
-	points.append(table_point)
-	line.points = points
+	points.append(table_point.end_point)
+	points.append(table_point.middle_point)
 	
-	for point in attribute_points:
+	line.points = round_edges(points) + [table_point.middle_point]
+	
+	for point in table_point.attribute_points:
 		var new_line = create_line()
-		new_line.points = [point[0], table_point]
+		new_line.points = [point, table_point.middle_point]
 		lines_container.add_child(new_line)
-		
-	return table_point
-
-
-func get_position_of_line_point(source_attribute: Control, destiny_attribute: Control) -> Array[Vector2]:
-	var center_source = source_attribute.global_position + source_attribute.size
-	var center_destiny = destiny_attribute.global_position
-	
-	var margin = Vector2(30, 0)
-	
-	if center_source.x < center_destiny.x - margin.x*2:
-		var attribute_point = Vector2(
-			source_attribute.global_position.x + source_attribute.size.x,
-			source_attribute.global_position.y + source_attribute.size.y/2,
-		)
-		return [attribute_point, attribute_point + margin]
-	else:
-		var attribute_point = Vector2(
-			source_attribute.global_position.x,
-			source_attribute.global_position.y + source_attribute.size.y/2,
-		)
-		return [attribute_point, attribute_point - margin]
 
 
 ## Attribute points are the points in the side of the columns
-func get_attribute_points(table: Control, dest: Control, columns_ids):
-	var attribute_points: Array[Array] = []
+func get_table_point(table: Control, dest: Control, columns_ids) -> TablePoint:
+	var attribute_points: Array[Vector2] = []
+	var side: Enums.SIDE = Enums.SIDE.LEFT
 	
 	for column_id in columns_ids:
 		var attribute_gui = table.attributes_list.get_node("column_" + str(column_id))
 		if not attribute_gui:
 			continue
 		
-		var points_source = get_position_of_line_point(attribute_gui, dest)
-		attribute_points.append(points_source)
+		var source_attribute = attribute_gui
+		var destiny_attribute = dest
+		
+		var center_source = source_attribute.global_position + source_attribute.size
+		var center_destiny = destiny_attribute.global_position
+		
+		if center_source.x < center_destiny.x - 50*2:
+			side = Enums.SIDE.RIGHT
+			var attribute_point = Vector2(
+				source_attribute.global_position.x + source_attribute.size.x,
+				source_attribute.global_position.y + source_attribute.size.y/2,
+			)
+			attribute_points.append(attribute_point)
+		else:
+			side = Enums.SIDE.LEFT
+			var attribute_point = Vector2(
+				source_attribute.global_position.x,
+				source_attribute.global_position.y + source_attribute.size.y/2,
+			)
+			attribute_points.append(attribute_point)
 	
-	return attribute_points
+	return TablePoint.new(attribute_points, side)
 
-
-## Table point is a bit awaiy from the table and the Y in the mean on all the Y's of the attribute points
-func get_table_point(attribute_points):
-	var sum_point: Vector2 = Vector2.ZERO
-	for init_point in attribute_points:
-		sum_point += init_point[1]
-	
-	var table_point: Vector2 = sum_point / Vector2(len(attribute_points), len(attribute_points))
-	
-	return table_point
 
 
 func create_line():
@@ -163,3 +146,58 @@ func create_line():
 	new_line.default_color = Color.hex(0x445c85ff)
 	new_line.antialiased = true
 	return new_line
+
+
+func round_edges(points: Array[Vector2]) -> Array[Vector2]:
+	if points.size() < 3:
+		return points
+		
+	for i in range(points.size()-1, 1, -1):
+		if points[i] == points[i-1]:
+			points.remove_at(i)
+	
+	var new_points: Array[Vector2] = round_edge(points[0], points[1], points[2])
+	
+	for i in range(3, points.size()):
+		var p = round_edge(new_points[-2], points[i-1], points[i])
+		new_points.append_array(p)
+	
+	
+	return new_points
+
+
+func round_edge(start_point: Vector2, control_point: Vector2, end_point: Vector2) -> Array[Vector2]:
+	const num_points: int = 8
+	const roundness: float = 2
+	const corner_size: float = 15
+	
+	var points: Array[Vector2] = []
+
+	# Calculate the distances from the control point to the start and end points
+	var start_dist = start_point.distance_to(control_point)
+	var end_dist = end_point.distance_to(control_point)
+
+	# Calculate the ratio of the corner size to the total distance
+	var start_ratio = min(corner_size / start_dist, 1.0)
+	var end_ratio = min(corner_size / end_dist, 1.0)
+
+	# Calculate the actual start and end points of the curve
+	var curve_start = start_point.lerp(control_point, 1-start_ratio)
+	var curve_end = end_point.lerp(control_point, 1-end_ratio)
+	
+	points.append(start_point)
+	points.append(curve_start)
+
+	for i in range(num_points):
+		var t: float = i / float(num_points - 1)
+		# Adjust the roundness by modifying the interpolation
+		var round_t: float = pow(t, roundness)
+		# Quadratic Bezier curve calculation for the curved part
+		var point: Vector2 = (1 - round_t) * (1 - round_t) * curve_start + 2 * (1 - round_t) * round_t * control_point + round_t * round_t * curve_end
+		points.append(point)
+	
+	points.append(curve_end)
+	
+	return points
+
+
