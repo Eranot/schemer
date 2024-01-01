@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://6llmmbsujwg"]
+[gd_scene load_steps=11 format=3 uid="uid://6llmmbsujwg"]
 
 [ext_resource type="Script" path="res://scene/screen/main/main.gd" id="1_bocqc"]
 [ext_resource type="Script" path="res://scene/screen/main/one_to_many_tool_controller.gd" id="3_5tcuh"]
@@ -7,6 +7,11 @@
 [ext_resource type="Script" path="res://scene/screen/main/many_to_many_tool_controller.gd" id="4_kop7y"]
 [ext_resource type="PackedScene" uid="uid://cibjypi6odsjd" path="res://scene/gui/top_bar_gui/top_bar_gui.tscn" id="5_l3frb"]
 [ext_resource type="PackedScene" uid="uid://c2f0huknfnwya" path="res://scene/gui/tool_bar_gui/tool_bar_gui.tscn" id="7_53qxf"]
+[ext_resource type="Texture2D" uid="uid://4lkryychtap8" path="res://asset/image/create_table_icon_normal.png" id="8_b381x"]
+[ext_resource type="Script" path="res://scene/screen/main/selected_tool_cursor_icon.gd" id="9_bq7o0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3hn0t"]
+bg_color = Color(0, 0, 0, 0.509804)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -59,3 +64,28 @@ offset_left = -8.0
 [node name="ToolBarGui" parent="Gui/VBoxContainer/Control" instance=ExtResource("7_53qxf")]
 layout_mode = 1
 offset_right = 57.0
+
+[node name="SelectedToolCursorIconContainer" type="PanelContainer" parent="Gui"]
+offset_left = 330.0
+offset_top = 323.0
+offset_right = 356.0
+offset_bottom = 347.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3hn0t")
+script = ExtResource("9_bq7o0")
+
+[node name="MarginContainer" type="MarginContainer" parent="Gui/SelectedToolCursorIconContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="SelectedToolCursorIcon" type="TextureRect" parent="Gui/SelectedToolCursorIconContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("8_b381x")
+expand_mode = 1
+stretch_mode = 5
