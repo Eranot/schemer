@@ -8,7 +8,7 @@ func _ready():
 	hide()
 
 
-func _process(delta):
+func _process(_delta):
 	global_position = get_global_mouse_position() + Vector2(10, 10)
 
 
