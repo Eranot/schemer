@@ -5,6 +5,9 @@ signal updated
 signal deleted
 signal column_order_updated(from_index: int, to_index: int)
 
+## Emitted when the table is selected to create a relationshop
+signal selected_for_relationship
+
 @export var id: int
 @export var name: String
 @export var columns: Array[TableColumn]
@@ -40,6 +43,10 @@ static func get_default_new_table() -> Table:
 
 func emit_updated():
 	updated.emit()
+
+
+func emit_selected_for_relationship():
+	selected_for_relationship.emit()
 
 
 func emit_deleted():

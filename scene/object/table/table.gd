@@ -23,6 +23,7 @@ func _ready():
 	table.updated.connect(on_table_updated)
 	table.deleted.connect(on_table_deleted)
 	table.column_order_updated.connect(func(_a, _b): self.on_table_updated())
+	table.selected_for_relationship.connect(on_selected_for_relationship)
 	
 	draggable.dragged.connect(on_table_dragged)
 	self.resized.connect(on_table_resized)
@@ -38,6 +39,12 @@ func _ready():
 	GlobalEvents.unselect_table.connect(func():
 		self.theme_type_variation = "TableContainer"
 	)
+	
+	GlobalEvents.select_tool.connect(func(tool: Enums.TOOL):
+		if tool == Enums.TOOL.NONE:
+			self.theme_type_variation = "TableContainer"
+	)
+	
 
 
 func on_gui_input(event):
@@ -79,6 +86,10 @@ func on_table_deleted():
 func on_table_dragged():
 	table.position = self.global_position
 	GlobalEvents.emit_table_gui_changed()
+
+
+func on_selected_for_relationship():
+	self.theme_type_variation = "SelectedForRelationshipTableContainer"
 
 
 func on_table_resized():

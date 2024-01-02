@@ -2,8 +2,8 @@
 ## about where the relationship lines should connect to the columns
 class_name TablePoint
 
-const MIDDLE_MARGIN = 25
-const END_MARGIN = 25
+const MIDDLE_MARGIN = 10
+const END_MARGIN = 10
 
 var attribute_points: Array[Vector2]
 var middle_point: Vector2

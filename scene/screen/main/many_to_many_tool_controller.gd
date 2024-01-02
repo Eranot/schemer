@@ -18,6 +18,7 @@ func on_click_table(table: Table):
 			first_selected_table = null
 		else:
 			first_selected_table = table
+			table.emit_selected_for_relationship()
 
 
 func create_many_to_many_relationship(table1: Table, table2: Table):

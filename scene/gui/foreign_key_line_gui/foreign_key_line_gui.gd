@@ -121,7 +121,7 @@ func get_table_point(table: Control, dest: Control, columns_ids) -> TablePoint:
 		var center_source = source_attribute.global_position + source_attribute.size
 		var center_destiny = destiny_attribute.global_position
 		
-		if center_source.x < center_destiny.x - 50*2:
+		if center_source.x < center_destiny.x - (TablePoint.MIDDLE_MARGIN + TablePoint.END_MARGIN) *2:
 			side = Enums.SIDE.RIGHT
 			var attribute_point = Vector2(
 				source_attribute.global_position.x + source_attribute.size.x,
