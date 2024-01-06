@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://addons/eranot.resizable/resizable.gd" id="3_o2ki2"]
 [ext_resource type="PackedScene" uid="uid://c1r1y68w2aawg" path="res://scene/component/draggable/draggable.tscn" id="4_lfg1w"]
 
-[node name="Table" type="PanelContainer"]
+[node name="Table" type="PanelContainer" groups=["tables"]]
 custom_minimum_size = Vector2(200, 0)
 offset_right = 300.0
 offset_bottom = 51.0

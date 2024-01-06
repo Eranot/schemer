@@ -2,6 +2,7 @@ extends Control
 
 const table_scene = preload("res://scene/object/table/table.tscn")
 @onready var tables_container = %TablesContainer
+@onready var camera_2d: Camera2D = $Camera2D
 
 var selected_tool: Enums.TOOL = Enums.TOOL.NONE
 
@@ -11,9 +12,9 @@ func _ready():
 	ProjectController.clean_project.connect(on_clean_project)
 	
 	var test_tables = [
-		load("res://resource/test_resources/table_car.tres"),
-		load("res://resource/test_resources/table_person.tres"),
-		load("res://resource/test_resources/table_dog.tres"),
+		#load("res://resource/test_resources/table_car.tres"),
+		#load("res://resource/test_resources/table_person.tres"),
+		#load("res://resource/test_resources/table_dog.tres"),
 	]
 	
 	for t in test_tables:

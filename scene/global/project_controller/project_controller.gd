@@ -50,3 +50,6 @@ func import_from_json(json: String):
 		GlobalEvents.emit_create_table(Table.from_json(table_json))
 	
 	GlobalEvents.emit_unselect_table()
+	
+	await get_tree().create_timer(0.1).timeout
+	GlobalEvents.emit_center_camera()

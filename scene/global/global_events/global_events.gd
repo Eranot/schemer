@@ -9,6 +9,7 @@ signal click_table(table: Table)
 signal select_tool(tool: Enums.TOOL)
 signal table_gui_changed
 signal table_deleted(table_id: int)
+signal center_camera
 
 
 func emit_select_table(table: Table):
@@ -40,3 +41,7 @@ func emit_table_gui_changed():
 func emit_table_deleted(table_id: int):
 	ProjectController.remove_table(ProjectController.get_table_by_id(table_id))
 	table_deleted.emit(table_id)
+
+
+func emit_center_camera():
+	center_camera.emit()
