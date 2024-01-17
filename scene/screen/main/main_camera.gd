@@ -23,6 +23,13 @@ func _unhandled_input(event):
 		position_before_drag2 = self.global_position
 	if event.is_action_released("camera_drag"):
 		position_before_drag = null
+	if event is InputEventPanGesture:
+		self.global_position += event.delta * 20
+	if event is InputEventMagnifyGesture:
+		if event.factor > 1:
+			set_zoom_level(zoom_level + (zoom_factor * 0.5))
+		elif event.factor < 1:
+			set_zoom_level(zoom_level - (zoom_factor * 0.5))
 	
 	if position_before_drag:
 		self.global_position = position_before_drag2 + (position_before_drag - event.global_position) * (1/zoom_level)
