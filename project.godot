@@ -100,6 +100,10 @@ move_down={
 ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.988235, 0.996078, 1, 1)
