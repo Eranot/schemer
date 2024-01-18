@@ -11,14 +11,28 @@ var source_table
 var target_table
 var source_table_columns: Array
 var target_table_columns: Array
+var columns: Array[Control] = []
 
-func _ready():
-	line_1 = create_line()
-	add_child(line_1)
+func _unhandled_input(event):
+	if not event is InputEventMouseMotion:
+		return
 	
-	line_2 = create_line()
-	add_child(line_2)
+	var mouse_position = get_global_mouse_position()
+	var lines = lines_container.get_children()
+	
+	for line in lines:
+		for i in range(line.points.size()-1):
+			var dist = distance_point_to_line(mouse_position, line.points[i], line.points[i+1])
+			if dist < 5:
+				hover_columns(true)
+				return
+		
+		hover_columns(false)
+		
 
+func hover_columns(val: bool):
+	for col in columns:
+		col.on_hover(val)
 
 func setup_line(source_table_id: int, target_table_id: int, foreign_key: ForeignKeyTableConstraint):
 	source_table = tables_container.get_node("table_" + str(source_table_id))
@@ -52,13 +66,19 @@ func setup_line(source_table_id: int, target_table_id: int, foreign_key: Foreign
 		foreign_key.center_point = Vector2.ZERO
 	else:
 		center_point.global_position = foreign_key.center_point
-
+	
 	draw_lines()
 
 
 func draw_lines():
 	for c in lines_container.get_children():
 		c.queue_free()
+	
+	line_1 = create_line()
+	lines_container.add_child(line_1)
+	
+	line_2 = create_line()
+	lines_container.add_child(line_2)
 	
 	var point_source: TablePoint = get_table_point(source_table, target_table, source_table_columns)
 	var point_target: TablePoint = get_table_point(target_table, source_table, target_table_columns)
@@ -115,6 +135,8 @@ func get_table_point(table: Control, dest: Control, columns_ids) -> TablePoint:
 		if not attribute_gui:
 			continue
 		
+		columns.append(attribute_gui)
+		
 		var source_attribute = attribute_gui
 		var destiny_attribute = dest
 		
@@ -139,12 +161,12 @@ func get_table_point(table: Control, dest: Control, columns_ids) -> TablePoint:
 	return TablePoint.new(attribute_points, side)
 
 
-
-func create_line():
+func create_line() -> Line2D:
 	var new_line = Line2D.new()
 	new_line.width = 2
 	new_line.default_color = Color.hex(0x445c85ff)
 	new_line.antialiased = true
+	
 	return new_line
 
 
@@ -201,3 +223,21 @@ func round_edge(start_point: Vector2, control_point: Vector2, end_point: Vector2
 	return points
 
 
+func distance_point_to_line(point: Vector2, line_start: Vector2, line_end: Vector2) -> float:
+	var line_vec = line_end - line_start
+	var point_vec = point - line_start
+	var line_length = line_vec.length()
+	var point_vec_length = point_vec.length()
+	
+	var dot = line_vec.dot(point_vec)
+	var projection = dot / line_length
+	
+	if projection < 0:
+		return point_vec_length
+	if projection > line_length:
+		return (point - line_end).length()
+	
+	var projection_vec = line_vec.normalized() * projection
+	var distance_vec = point_vec - projection_vec
+	
+	return distance_vec.length()

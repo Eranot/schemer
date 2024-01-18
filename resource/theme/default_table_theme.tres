@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://b56fyl0iqk8yr"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://b56fyl0iqk8yr"]
 
 [ext_resource type="FontFile" uid="uid://b4gvgpxtfkka5" path="res://resource/font/Roboto-Regular.ttf" id="1_3plyh"]
 
@@ -26,6 +26,9 @@ corner_radius_top_right = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm2sc"]
 bg_color = Color(0.933333, 0.933333, 0.933333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyfkd"]
+bg_color = Color(0.860369, 0.860369, 0.860369, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knp1c"]
 bg_color = Color(0, 0, 0, 0)
@@ -56,6 +59,8 @@ TableColumnNameLabel/colors/font_color = Color(0.258824, 0.254902, 0.254902, 1)
 TableColumnNameLabel/font_sizes/font_size = 22
 TableColumnPanel/base_type = &"PanelContainer"
 TableColumnPanel/styles/panel = SubResource("StyleBoxFlat_tm2sc")
+TableColumnPanelHover/base_type = &"PanelContainer"
+TableColumnPanelHover/styles/panel = SubResource("StyleBoxFlat_jyfkd")
 TableColumnTypeLabel/base_type = &"Label"
 TableColumnTypeLabel/colors/font_color = Color(0.462745, 0.462745, 0.462745, 1)
 TableColumnTypeLabel/font_sizes/font_size = 22

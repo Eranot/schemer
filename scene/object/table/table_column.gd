@@ -12,6 +12,12 @@ var nullable_texture = preload("res://asset/image/column_diamond_empty.png")
 
 var column: TableColumn
 
+
+func _ready():
+	self.mouse_entered.connect(func(): self.on_hover(true))
+	self.mouse_exited.connect(func(): self.on_hover(false))
+
+
 func set_column(_column: TableColumn):
 	self.column = _column
 	populate()
@@ -30,3 +36,10 @@ func populate():
 		column_icon.texture = not_null_texture
 	else:
 		column_icon.texture = nullable_texture
+
+
+func on_hover(hovered: bool):
+	if hovered:
+		theme_type_variation = "TableColumnPanelHover"
+	else:
+		theme_type_variation = "TableColumnPanel"

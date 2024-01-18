@@ -40,3 +40,4 @@ name = "person"
 columns = Array[ExtResource("1_odbfc")]([SubResource("Resource_vxggb"), SubResource("Resource_gswf8"), SubResource("Resource_dgi67")])
 constraints = Array[Resource("res://resource/table/table_constraint.gd")]([])
 position = Vector2(400, 400)
+size = Vector2(0, 0)
