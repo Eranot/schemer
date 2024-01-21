@@ -35,11 +35,12 @@ func hover_columns(val: bool):
 		col.on_hover(val)
 
 func setup_line(source_table_id: int, target_table_id: int, foreign_key: ForeignKeyTableConstraint):
+	if not tables_container.has_node("table_" + str(source_table_id)) \
+		or not tables_container.has_node("table_" + str(target_table_id)):
+		return
+	
 	source_table = tables_container.get_node("table_" + str(source_table_id))
 	target_table = tables_container.get_node("table_" + str(target_table_id))
-	
-	if not source_table or not target_table:
-		return
 	
 	line_draggable.dragged.connect(func():
 		foreign_key.center_point = center_point.global_position
@@ -131,10 +132,10 @@ func get_table_point(table: Control, dest: Control, columns_ids) -> TablePoint:
 	var side: Enums.SIDE = Enums.SIDE.LEFT
 	
 	for column_id in columns_ids:
-		var attribute_gui = table.attributes_list.get_node("column_" + str(column_id))
-		if not attribute_gui:
+		if not table.attributes_list.has_node("column_" + str(column_id)):
 			continue
-		
+			
+		var attribute_gui = table.attributes_list.get_node("column_" + str(column_id))
 		columns.append(attribute_gui)
 		
 		var source_attribute = attribute_gui

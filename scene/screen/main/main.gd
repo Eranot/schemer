@@ -12,9 +12,9 @@ func _ready():
 	ProjectController.clean_project.connect(on_clean_project)
 	
 	var test_tables = [
-		load("res://resource/test_resources/table_car.tres"),
-		load("res://resource/test_resources/table_person.tres"),
-		load("res://resource/test_resources/table_dog.tres"),
+		#load("res://resource/test_resources/table_car.tres"),
+		#load("res://resource/test_resources/table_person.tres"),
+		#load("res://resource/test_resources/table_dog.tres"),
 	]
 	
 	for t in test_tables:

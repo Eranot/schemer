@@ -22,7 +22,10 @@ func get_json():
 		"target_table_id": self.target_table_id,
 		"center_point": {
 			"x": center_point.x,
-			"y": center_point.x
+			"y": center_point.y,
+		} if center_point else {
+			"x": 0,
+			"y": 0,
 		},
 		"relationships": []
 	}
@@ -37,7 +40,7 @@ static func from_json(json):
 	var constraint = ForeignKeyTableConstraint.new()
 	constraint.id = json["id"]
 	constraint.target_table_id = json["target_table_id"]
-	constraint.center_point = Vector2(json["center_point"]["x"], json["center_point"]["y"])
+	constraint.center_point = Vector2(json["center_point"]["x"], json["center_point"]["y"]) if json["center_point"] else Vector2.ZERO
 	for rel in json["relationships"]:
 		constraint.relationships.append(ForeignKeyTableConstraintRelationship.from_json(rel))
 
